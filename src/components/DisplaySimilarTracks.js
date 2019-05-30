@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { lastfmBaseApiUrl, lastfmApiKey } from "../constants/Api.js"
 import Axios from "axios";
 import DisplayLyrics from "./DisplayLyrics.js";
@@ -14,7 +14,7 @@ class DisplaySimilarTracks extends Component{
             trackUserChoice: "",
             artistUserChoice:"",
             // lyric: "",
-            lyrics: []
+            // lyrics: []
         }	
     }
     handleTrackChange = (e) => {
@@ -155,49 +155,34 @@ class DisplaySimilarTracks extends Component{
                 console.log(error)
             })
         }
-        if (this.state.artistUserChoice !== prevState.artistUserChoice || this.state.trackUserChoice !== prevState.trackUserChoice){
-            Axios({
-            url: `https://orion.apiseeds.com/api/music/lyric/${this.state.artistUserChoice}/${this.state.trackUserChoice}`,
-            method: "GET",
-            params: {
-                apikey: "NwvEEhvTSAjQ5YEndl9ylxZ6OH90YtNtcDsrMWU3vShjz1dsY948lmjdvlbAQv8h",
-            }
-
-        }).then((res) => {
-            if (res.data.result.track.name === this.state.trackUserChoice) {
-                this.setState({
-                    // lyric:res.data.result.track.text,
-                    lyrics: res.data.result.track.text.split("\n"),
-                })
-            }
-            // console.log(res.data.result.track.text.split('\n').slice(0,11));
-        }).catch(error => {
-            console.log(error.message)
-            alert("sorry, we cannot find the lyrics of the song😢")
-        }
-        )
-        }
+        
         
     }
     render(){
         return(
-            <main>
-                <form action="" onSubmit={this.handleFormSubmit}>
-                    <label htmlFor="track"></label>
-                    <input 
-                        onChange={this.handleTrackChange} 
-                        type="text" 
-                        id="trackInput" 
-                        value={this.state.inputPlaceholder} 
-                        placeholder="type in the track name"
-                        onClick={this.handleTrackClick}
-                    />
-                    <button>Find it</button>
-                </form>
-                {this.state.backMusicData.length>0?this.displayTracks():this.renderLoadingPage()}
+            <Fragment>
+                <header id="">
+                    <form action="" onSubmit={this.handleFormSubmit}>
+                        <label htmlFor="track"></label>
+                        <input
+                            onChange={this.handleTrackChange}
+                            type="text"
+                            id="trackInput"
+                            value={this.state.inputPlaceholder}
+                            placeholder="type in the track name"
+                            onClick={this.handleTrackClick}
+                        />
+                        <button>Find it</button>
+                    </form>
+                </header>
 
-                <DisplayLyrics lyrics={this.state.lyrics} />
-            </main>
+                <main>
+                    {this.state.backMusicData.length > 0 ? this.displayTracks() : this.renderLoadingPage()}
+
+                    <DisplayLyrics track={this.state.trackUserChoice} artist={this.state.artistUserChoice}/>
+                </main>
+            </Fragment>
+            
                 
 
         )
