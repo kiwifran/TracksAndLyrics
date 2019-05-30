@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { lastfmBaseApiUrl, lastfmApiKey } from "../constants/Api.js"
+import { itunesApiUrl} from "../constants/Api.js"
 import Axios from "axios";
 import DisplayLyrics from "./DisplayLyrics.js";
 
@@ -131,7 +131,7 @@ class DisplaySimilarTracks extends Component{
     componentDidUpdate(prevProps, prevState) {
         if(this.state.inputString!==prevState.inputString){
             Axios({
-                url:"https://itunes.apple.com/search?parameterkeyvalue",
+                url: itunesApiUrl,
                 method: "GET",
                 dataResponse: "JSON",
                 params: {

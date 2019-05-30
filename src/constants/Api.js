@@ -1,3 +1,4 @@
-export const lastfmBaseApiUrl = "http://ws.audioscrobbler.com/2.0";
-export const lastfmApiKey = "6aff3e09edb97fc3b2062265b240858d";
-export default {lastfmBaseApiUrl, lastfmApiKey};
+export const itunesApiUrl = "https://itunes.apple.com/search?parameterkeyvalue";
+export const apiSeedsApiUrl = "https://orion.apiseeds.com/api/music/lyric/";
+export const apiSeedsKey = "NwvEEhvTSAjQ5YEndl9ylxZ6OH90YtNtcDsrMWU3vShjz1dsY948lmjdvlbAQv8h";
+export default {itunesApiUrl, apiSeedsApiUrl, apiSeedsKey};

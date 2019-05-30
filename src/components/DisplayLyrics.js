@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {apiSeedsApiUrl, apiSeedsKey} from "../constants/Api.js"
 import Axios from "axios";
 class DisplayLyrics extends Component{
     constructor(){
@@ -13,10 +14,10 @@ class DisplayLyrics extends Component{
     componentDidUpdate(prevProps, prevState){
         if (this.props.artist !== prevProps.artist || this.props.track !== prevProps.track) {
             Axios({
-                url: `https://orion.apiseeds.com/api/music/lyric/${this.props.artist}/${this.props.track}`,
+                url: `${apiSeedsApiUrl}${this.props.artist}/${this.props.track}`,
                 method: "GET",
                 params: {
-                    apikey: "NwvEEhvTSAjQ5YEndl9ylxZ6OH90YtNtcDsrMWU3vShjz1dsY948lmjdvlbAQv8h",
+                    apikey:apiSeedsKey ,
                 }
 
             }).then((res) => {
