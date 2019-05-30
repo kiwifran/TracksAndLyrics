@@ -8,49 +8,43 @@ class DisplaySimilarTracks extends Component{
         super();
         this.state={
             backMusicData: [],
-            musicApiBack: false,
-            trackPlaceholder: "",
-            artistPlaceholder: "",
-            trackString:"",
-            artistString:"",
-            uerChoice: "Time after Time",
+            // musicApiBack: false,
+            inputPlaceholder: "",
+            inputString:"",
+            trackUserChoice: "",
+            artistUserChoice:"",
             // lyric: "",
             lyrics: []
         }	
     }
-    handleArtistChange =(e)=>{
-        this.setState({
-            artistPlaceholder:e.target.value
-        })
-    }
     handleTrackChange = (e) => {
         this.setState({
-            trackPlaceholder: e.target.value
-        })
-    }
-    handleArtistClick=()=>{
-        this.setState({
-            artistPlaceholder:"",
+            inputPlaceholder: e.target.value
         })
     }
     handleTrackClick=()=>{
         this.setState({
-            trackPlaceholder:"",
+            inputPlaceholder:"",
         })
     }
     handleFormSubmit =(e)=>{
         e.preventDefault();
-        if(this.state.trackPlaceholder!==""&&this.state.artistPlaceholder!==""){
+        if(this.state.inputPlaceholder!==""){
             this.setState({
-                trackString: this.state.trackPlaceholder,
-                artistString: this.state.artistPlaceholder,
-                trackPlaceholder: "",
-                artistPlaceholder: "",
+                inputString: this.state.inputPlaceholder,
+                inputPlaceholder: "",
             })
         }
         else(
             alert("check your spelling!")
         )
+    }
+    handleDbClick =(e)=>{
+        console.log(e.target);
+        this.setState({
+            trackUserChoice:e.target.dataset.track,
+            artistUserChoice:e.target.dataset.artist,
+        })
     }
     renderLoadingPage=()=>{
         return(
@@ -60,25 +54,54 @@ class DisplaySimilarTracks extends Component{
         )
     }
     displayTracks=()=>{
+        const jsxString = [];
+        this.state.backMusicData.forEach((track) => {
+            if (track.trackViewUrl !== undefined) {
+                jsxString.push(
+                    <div key={track.trackId} className="singleTrack">
+                        <div className="trackWrapper">
+                            <div className="imgWrapper">
+                                <a target="_blank" href={track.trackViewUrl}>
+                                    <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
+                                </a>
+                            </div>
+                            <p 
+                                className="trackInfo" 
+                                data-artist={track.artistName} 
+                                data-track={track.trackName} 
+                                onDoubleClick={this.handleDbClick} >
+                                    {track.artistName}<br/>
+                                    {track.trackName}
+                            </p>
+                        </div>
+                    </div>
+                )
+
+            } else {
+                jsxString.push (
+                    <div key={track.trackID} className="singleTrack">
+                        <div className="trackWrapper">
+                            <div className="imgWrapper">
+                                <a target="_blank" href={track.collectionViewUrl}>
+                                    <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
+                                </a>
+                            </div>
+                            <p 
+                                className="trackInfo" 
+                                data-artist={track.artistName} 
+                                data-track={track.trackName}  
+                                onDoubleClick={this.handleDbClick}>
+                                {track.artistName}<br/>
+                                {track.trackName}
+                            </p>
+                        </div>
+                    </div>
+                )
+            }
+        })
         return(
             <div className="tracksWrapper">
-                {this.state.backMusicData.map((track, i)=>{
-                    return(
-                        <div key={track.trackID} className="singleTrack">
-                            <div className="trackWrapper">
-                                <div className="imgWrapper">
-                                    <a target="_blank" href={track.trackViewUrl}>
-                                        <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName}/>
-                                    </a>
-                                </div>
-                                <div className="infoWrapper">
-                                    <p>{track.artistName}</p>
-                                    <p>{track.trackName}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
+                {jsxString}
             </div>
         )
     }
@@ -106,19 +129,21 @@ class DisplaySimilarTracks extends Component{
         // )
     }
     componentDidUpdate(prevProps, prevState) {
-        if(this.state.artistString!==prevState.artistString||this.state.trackString!==prevState.trackString){
+        if(this.state.inputString!==prevState.inputString){
             Axios({
                 url:"https://itunes.apple.com/search?parameterkeyvalue",
                 method: "GET",
                 dataResponse: "JSON",
                 params: {
-                    term:this.state.trackString,
+                    term:this.state.inputString,
                     country:"ca",
                     media:"music",
                     limit:10
                 }
 
             }).then((res) => {
+                console.log(res.data.results);
+                
                 this.setState({
                     backMusicData:res.data.results,
                 })
@@ -130,27 +155,40 @@ class DisplaySimilarTracks extends Component{
                 console.log(error)
             })
         }
+        if (this.state.artistUserChoice !== prevState.artistUserChoice || this.state.trackUserChoice !== prevState.trackUserChoice){
+            Axios({
+            url: `https://orion.apiseeds.com/api/music/lyric/${this.state.artistUserChoice}/${this.state.trackUserChoice}`,
+            method: "GET",
+            params: {
+                apikey: "NwvEEhvTSAjQ5YEndl9ylxZ6OH90YtNtcDsrMWU3vShjz1dsY948lmjdvlbAQv8h",
+            }
+
+        }).then((res) => {
+            if (res.data.result.track.name === this.state.trackUserChoice) {
+                this.setState({
+                    // lyric:res.data.result.track.text,
+                    lyrics: res.data.result.track.text.split("\n"),
+                })
+            }
+            // console.log(res.data.result.track.text.split('\n').slice(0,11));
+        }).catch(error => {
+            console.log(error.message)
+            alert("sorry, we cannot find the lyrics of the song😢")
+        }
+        )
+        }
         
     }
     render(){
         return(
             <main>
                 <form action="" onSubmit={this.handleFormSubmit}>
-                    <label htmlFor="artist"></label>
-                    <input 
-                        onChange={this.handleArtistChange} 
-                        type="text"  
-                        id="artistInput" 
-                        value={this.state.artistPlaceholder}  
-                        placeholder="type in the artist name"
-                        onClick={this.handleArtistClick}
-                    />
                     <label htmlFor="track"></label>
                     <input 
                         onChange={this.handleTrackChange} 
                         type="text" 
                         id="trackInput" 
-                        value={this.state.trackPlaceholder} 
+                        value={this.state.inputPlaceholder} 
                         placeholder="type in the track name"
                         onClick={this.handleTrackClick}
                     />
@@ -158,7 +196,7 @@ class DisplaySimilarTracks extends Component{
                 </form>
                 {this.state.backMusicData.length>0?this.displayTracks():this.renderLoadingPage()}
 
-                {/* <DisplayLyrics lyrics={this.state.lyrics} /> */}
+                <DisplayLyrics lyrics={this.state.lyrics} />
             </main>
                 
 
