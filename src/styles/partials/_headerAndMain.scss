@@ -1,45 +1,57 @@
 p {
     margin-top:0;
 }
+img {
+    width:100%;
+    max-width:100;
+    display: block;
+    border-radius: 20%;
 
+
+}
+.wrapper {
+    width:85%;
+    margin: 0 auto;
+
+}
 header {
     height: 100vh;
     padding-top:1.5rem;
     background-image:url(/assets/headerBackground.jpg);
     background-size: cover;
-    background-position: center center;  
-}
-.headerWrapper {
-    width:85%;
-    margin: 0 auto;
-}
-h1 {
+    background-position: center center; 
+    h1 {
     margin-top: 0;
     margin-bottom: 13.8rem;
     color:$black;
-    text-align: right;
-}
-form {
+
+	-webkit-animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+	animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+
+    }
+
+    form {
     @include flex(column, center, center, center )
+    }
+    input, 
+    .submitSearch {
+        width:40%;
+        border:none;
+        color:$white;
+    }
+    input {
+        border-bottom:0.2px solid $white;
+        margin-bottom: 1rem;
+        padding-bottom: 10px;
+        background: transparent;
+
+    }
+    input, 
+    input::placeholder {
+        color:$white;
+    }
 }
 
-input, .submitSearch {
-    width:40%;
-    border:none;
-    color:$white;
-}
-input {
-    border-bottom:0.2px solid $white;
-    margin-bottom: 1rem;
-    padding-bottom: 10px;
-    background: transparent;
-
-}
-input, 
-input::placeholder {
-    color:$white;
-    text-align: center;
-}
 
 .submitSearch {
     padding:5px 10px;
@@ -49,15 +61,49 @@ input::placeholder {
 }
 
 main {
-    @include color($secondaryColor, $white);
+    @include color($mainColor, $white);
     min-height: 100vh;
 }
-.loadingTrack,
+.loadingTracks,
 .tracksWrapper,
 .loadingLyrics {
-    @include flex(row, space-around, center, center);
+    flex-wrap:wrap;
+    padding-top: 5rem;
 }
-.loadingTrack h3,
-.loadingLyrics{
-    margin-top: 7rem;
+.loadingTracks,
+.loadingLyrics {
+    @include flex(row, center, center, center);
+    h3 {
+        margin-top: 3rem;
+    }
+    
 }
+.loadingTracks,
+.loadingLyrics {
+    span {
+        color:$accentColor;
+    }
+    
+}
+.tracksWrapper {
+    @include flex(row, space-between, center, center);
+    .singleTrack {
+        @include flex(column, space-between, center, center);
+        width:17%;
+        margin-bottom: 1rem;
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+}
+
+.imgWrapper {
+    width:100%;
+    margin-bottom: 1.5rem;
+	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+}
+
+
+

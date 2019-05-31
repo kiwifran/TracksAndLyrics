@@ -48,18 +48,18 @@ class DisplaySimilarTracks extends Component{
     }
     renderLoadingPage=()=>{
         return(
-            <div className="loadingTrack">
-                <h3>Please type in track and artist ♫</h3>
+            <div className="loadingTracks wrapper">
+                <h3>Please <span>type in</span>  track and artist <span>♫</span></h3>
             </div>
         )
     }
+    
     displayTracks=()=>{
         const jsxString = [];
         this.state.backMusicData.forEach((track) => {
             if (track.trackViewUrl !== undefined) {
                 jsxString.push(
                     <div key={track.trackId} className="singleTrack">
-                        <div className="trackWrapper">
                             <div className="imgWrapper">
                                 <a target="_blank" href={track.trackViewUrl}>
                                     <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
@@ -70,17 +70,15 @@ class DisplaySimilarTracks extends Component{
                                 data-artist={track.artistName} 
                                 data-track={track.trackName} 
                                 onDoubleClick={this.handleDbClick} >
-                                    {track.artistName}<br/>
-                                    {track.trackName}
+                                {track.artistName}<br/>
+                                {track.trackName} 
                             </p>
-                        </div>
                     </div>
                 )
 
             } else {
                 jsxString.push (
                     <div key={track.trackID} className="singleTrack">
-                        <div className="trackWrapper">
                             <div className="imgWrapper">
                                 <a target="_blank" href={track.collectionViewUrl}>
                                     <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
@@ -94,13 +92,12 @@ class DisplaySimilarTracks extends Component{
                                 {track.artistName}<br/>
                                 {track.trackName}
                             </p>
-                        </div>
                     </div>
                 )
             }
         })
         return(
-            <div className="tracksWrapper">
+            <div className="tracksWrapper wrapper">
                 {jsxString}
             </div>
         )
@@ -138,7 +135,8 @@ class DisplaySimilarTracks extends Component{
                     term:this.state.inputString,
                     country:"ca",
                     media:"music",
-                    limit:20
+                    limit:25,
+                    lang: "en_us"
                 }
 
             }).then((res) => {
@@ -162,7 +160,7 @@ class DisplaySimilarTracks extends Component{
         return(
             <Fragment>
                 <header id="#header">
-                    <div className="headerWrapper">
+                    <div className="headerWrapper wrapper">
                         <h1>Melodies & Words</h1>
                         <form action="" onSubmit={this.handleFormSubmit}>
                             <label htmlFor="track" className="visuallyHidden"></label>
@@ -180,7 +178,12 @@ class DisplaySimilarTracks extends Component{
                 </header>
 
                 <main>
-                    {this.state.backMusicData.length > 0 ? this.displayTracks() : this.renderLoadingPage()}
+                    <div className="trackResultWrapper">
+                        {this.state.backMusicData.length > 0
+                            ? this.displayTracks()
+                            : this.renderLoadingPage()}
+                    </div>
+                    
 
                     <DisplayLyrics track={this.state.trackUserChoice} artist={this.state.artistUserChoice}/>
                 </main>

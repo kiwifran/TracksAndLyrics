@@ -10,6 +10,7 @@ html {
     font-size: ($size / 20) * 1rem;
     font-size: $size * 1px;
     font-family: "BioRhyme", serif;
+    font-weight: 700;
 
 }
 
@@ -21,12 +22,21 @@ html {
 
 h1 {
     @include headingFont(70);
-    text-align: center;
+    text-align: right;
 }
 input, .submitSearch {
     @include bodyFont(25);
+    text-align: center;
 
 }
+main {
+    @include bodyFont(22);
+}
 h3 {
-    @include bodyFont(40);
+    @include bodyFont(36);
+}
+
+footer {
+    @include bodyFont(18);
+    text-align: center;
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DisplaySimilarTracks from './components/DisplaySimilarTracks.js';
+import Footer from "./components/Footer.js"
 import './styles/styles.scss';
 
 class App extends Component{
@@ -54,6 +55,7 @@ class App extends Component{
     return (
       <div className="App">
         <DisplaySimilarTracks/>
+        <Footer />
       </div>
     );
   }
