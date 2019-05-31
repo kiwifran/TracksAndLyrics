@@ -1,0 +1,32 @@
+html {
+    font-size: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Alegreya|BioRhyme:700&display=swap');
+
+
+
+@mixin headingFont($size){
+    font-size: ($size / 20) * 1rem;
+    font-size: $size * 1px;
+    font-family: "BioRhyme", serif;
+
+}
+
+@mixin bodyFont($size){
+    font-size: ($size / 20) * 1rem;
+    font-size: $size * 1px;
+    font-family: "Alegreya", serif;
+}
+
+h1 {
+    @include headingFont(70);
+    text-align: center;
+}
+input, .submitSearch {
+    @include bodyFont(25);
+
+}
+h3 {
+    @include bodyFont(40);
+}

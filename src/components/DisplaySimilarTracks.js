@@ -48,8 +48,8 @@ class DisplaySimilarTracks extends Component{
     }
     renderLoadingPage=()=>{
         return(
-            <div className="loading">
-                <p>Please type in track and artist</p>
+            <div className="loadingTrack">
+                <h3>Please type in track and artist ♫</h3>
             </div>
         )
     }
@@ -138,7 +138,7 @@ class DisplaySimilarTracks extends Component{
                     term:this.state.inputString,
                     country:"ca",
                     media:"music",
-                    limit:10
+                    limit:20
                 }
 
             }).then((res) => {
@@ -161,19 +161,22 @@ class DisplaySimilarTracks extends Component{
     render(){
         return(
             <Fragment>
-                <header id="">
-                    <form action="" onSubmit={this.handleFormSubmit}>
-                        <label htmlFor="track"></label>
-                        <input
-                            onChange={this.handleTrackChange}
-                            type="text"
-                            id="trackInput"
-                            value={this.state.inputPlaceholder}
-                            placeholder="type in the track name"
-                            onClick={this.handleTrackClick}
-                        />
-                        <button>Find it</button>
-                    </form>
+                <header id="#header">
+                    <div className="headerWrapper">
+                        <h1>Melodies & Words</h1>
+                        <form action="" onSubmit={this.handleFormSubmit}>
+                            <label htmlFor="track" className="visuallyHidden"></label>
+                            <input
+                                onChange={this.handleTrackChange}
+                                type="text"
+                                id="trackInput"
+                                value={this.state.inputPlaceholder}
+                                placeholder="type in the track name"
+                                onClick={this.handleTrackClick}
+                            />
+                            <button className="submitSearch">Find it</button>
+                        </form>
+                    </div>
                 </header>
 
                 <main>

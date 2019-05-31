@@ -1,6 +1,4 @@
 @import "./partials/setup";
-@import "./partials/header";
-
-body{
-    font-family:  cursive;
-}
+@import "./partials/typography";
+@import "./partials/basicElements";
+@import "./partials/headerAndMain";

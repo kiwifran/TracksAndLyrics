@@ -47,8 +47,12 @@ class DisplayLyrics extends Component{
         
     }
     renderLoading=()=>{
-        return (<h2>Please select your song</h2>
-)
+        return (
+            <div className="loadingLyrics">
+                <h3>Please select your song♬</h3>
+            </div>
+        
+        )
     }
     // componentDidUpdate(prevProps, prevState) {
     //     if(this.props.lyrics!==prevProps.lyrics){

@@ -1,0 +1,20 @@
+$mainColor: rgba(47, 97, 122, 1);
+// $secondaryColor: rgba(87, 115, 153, 1);
+$secondaryColor: #1a3543;
+$accentColor: rgba(211, 105, 55, 1);
+$white: rgba(229, 251, 252, 1);
+$black:rgba(33, 40, 47, 1);
+
+
+@mixin flex ($flex-direction, $justify-content, $align-items, $text-align) {
+    display:flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-content: $align-items;
+    text-align: $text-align;
+}
+
+@mixin color ($background-color, $color){
+    background-color: $background-color;
+    color:$color;
+}
