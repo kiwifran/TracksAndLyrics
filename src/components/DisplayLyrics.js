@@ -42,7 +42,6 @@ class DisplayLyrics extends Component{
         return(
             <div className="lyricsWrapper">
                 {lyricsLines}
-                <a href="#header">go to top</a>
             </div>
         )
         

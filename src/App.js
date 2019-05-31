@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DisplaySimilarTracks from './components/DisplaySimilarTracks.js';
-import './App.css';
+import './styles/styles.scss';
 
 class App extends Component{
   constructor(){
