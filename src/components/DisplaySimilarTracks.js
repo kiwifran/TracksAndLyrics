@@ -3,9 +3,11 @@ import { itunesApiUrl} from "../constants/Api.js"
 import Axios from "axios";
 import Swal from "sweetalert2";
 import animateScrollTo from 'animated-scroll-to';
+import Rellax from "rellax";
+
 import DisplayLyrics from "./DisplayLyrics.js";
-import GoUPButton from "./GoUpButton.js";
 import GoUpButton from "./GoUpButton.js";
+import RellaxDisplay from "./RellaxDisplay.js";
 
 class DisplaySimilarTracks extends Component{
     constructor(){
@@ -122,7 +124,8 @@ class DisplaySimilarTracks extends Component{
         )
     }
     componentDidMount(){
-        
+        const rellax = new Rellax(".rellax");
+
         // Axios({
         //     url: `https://orion.apiseeds.com/api/music/lyric/${this.state.artist}/${this.state.track}`,
         //     method: "GET",
@@ -188,6 +191,7 @@ class DisplaySimilarTracks extends Component{
             <Fragment>
                 <header className="header">
                     <div className="headerWrapper wrapper">
+                    <RellaxDisplay />
                         <h1>Melodies & Words</h1>
                         <form action="" onSubmit={this.handleFormSubmit}>
                             <label htmlFor="track" className="visuallyHidden"></label>

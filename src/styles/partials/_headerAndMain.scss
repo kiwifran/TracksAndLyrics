@@ -1,48 +1,6 @@
-p {
-    margin-top:0;
-}
-img {
-    width:100%;
-    max-width:100;
-    display: block;
-    border-radius: 10px;
 
-
-}
-.wrapper {
-    width:85%;
-    margin: 0 auto;
-
-}
-.quickScrollUp {
-    width:35%;
-    display: block;
-    margin: 2rem auto;
-    padding:10px 10px;
-}
-input, 
-button {
-    width:40%;
-    border:none;
-    color:$white;
-}
-input {
-    border-bottom:0.2px solid $white;
-    margin-bottom: 1rem;
-    padding-bottom: 10px;
-    background: transparent;
-}
-input, 
-input::placeholder {
-    color:$white;
-}
-button {
-    padding:5px 10px;
-    border-radius: 10px;
-    background: rgb(211,105,55);
-    background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
-}
 header {
+    position: relative;
     height: 100vh;
     padding-top:1.5rem;
     background-image:url(/assets/headerBackground.jpg);
@@ -63,12 +21,38 @@ header {
     }
     
 }
-
-
-
-
+.musicSign1{
+    top:16%;
+    right:5%;
+}
+.musicSign2{
+    top:47%;
+    left:8%;
+}
+.musicSign3{
+    top:45%;
+    right:27%;
+}
+.musicSign4{
+    top:29%;
+    left:32%;
+}
+.musicSign5{
+    top:80%;
+    right:20%;
+}
+.musicSign6{
+    top:7%;
+    left:25%;
+}
 main {
     min-height: 100vh;
+}
+.quickScrollUp {
+    width:35%;
+    display: block;
+    margin: 2rem auto;
+    padding:10px 10px;
 }
 .trackResultWrapper,
 .lyricsResultWrapper {
@@ -80,8 +64,6 @@ main {
 .trackResultWrapper {
     @include color($mainColor, $white);
 }
-
-
 .loadingTracks,
 .loadingLyrics {
     @include flex(row, center, center, center);

@@ -27,6 +27,50 @@ body {
     max-width:1600px;
     margin: 0 auto;
 }
+p {
+    margin-top:0;
+}
+img {
+    width:100%;
+    max-width:100;
+    display: block;
+    border-radius: 10px;
+
+
+}
+.wrapper {
+    width:85%;
+    margin: 0 auto;
+
+}
+.musicSign {
+    position: absolute;
+    color:$accentColor;
+}
+
+input, 
+button {
+    width:40%;
+    border:none;
+    color:$white;
+}
+input {
+    border-bottom:0.2px solid $white;
+    margin-bottom: 1rem;
+    padding-bottom: 10px;
+    background: transparent;
+}
+input, 
+input::placeholder {
+    color:$white;
+}
+button {
+    padding:5px 10px;
+    border-radius: 10px;
+    background: rgb(211,105,55);
+    background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
+}
+
 h2.swal2-title,
 .swal2-content>div:first-child {
     color:$white;

@@ -26,6 +26,10 @@ html {
     // font-family: 'Lato', sans-serif;
 
 }
+.musicSign {
+    @include headingFont(60);
+    opacity: 0.5;
+}
 
 h1 {
     @include headingFont(78);
