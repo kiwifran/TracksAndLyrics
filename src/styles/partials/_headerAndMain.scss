@@ -111,9 +111,16 @@ main {
 	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-.trackInfo span {
-    display: inline-block;
-    margin-bottom: 0.6rem;
+.trackInfo {
+    &:hover {
+	-webkit-animation: text-pop-up-top 0.5s ease-in-out both;
+	animation: text-pop-up-top 0.5s ease-in-out both;
+    }
+    span{
+        display: inline-block;
+        margin-bottom: 0.6rem;
+    }
+    
 }
 
 .lyricsResultWrapper  {
