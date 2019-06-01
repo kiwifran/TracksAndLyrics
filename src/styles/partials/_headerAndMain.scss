@@ -14,6 +14,34 @@ img {
     margin: 0 auto;
 
 }
+.quickScrollUp {
+    width:35%;
+    display: block;
+    margin: 2rem auto;
+    padding:10px 10px;
+}
+input, 
+button {
+    width:40%;
+    border:none;
+    color:$white;
+}
+input {
+    border-bottom:0.2px solid $white;
+    margin-bottom: 1rem;
+    padding-bottom: 10px;
+    background: transparent;
+}
+input, 
+input::placeholder {
+    color:$white;
+}
+button {
+    padding:5px 10px;
+    border-radius: 10px;
+    background: rgb(211,105,55);
+    background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
+}
 header {
     height: 100vh;
     padding-top:1.5rem;
@@ -33,32 +61,11 @@ header {
     form {
     @include flex(column, center, center, center )
     }
-    input, 
-    .submitSearch {
-        width:40%;
-        border:none;
-        color:$white;
-    }
-    input {
-        border-bottom:0.2px solid $white;
-        margin-bottom: 1rem;
-        padding-bottom: 10px;
-        background: transparent;
-
-    }
-    input, 
-    input::placeholder {
-        color:$white;
-    }
+    
 }
 
 
-.submitSearch {
-    padding:5px 10px;
-    border-radius: 10px;
-    background: rgb(211,105,55);
-    background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
-}
+
 
 main {
     min-height: 100vh;
@@ -89,8 +96,11 @@ main {
         color:$accentColor;
     }
 }
-.tracksWrapper h3 {
+.tracksWrapper {
+    padding-bottom: 2rem;
+    h3 {
     color:$accentColor;
+}
 }
 .tracks{
     @include flex(row, space-between, center, center);

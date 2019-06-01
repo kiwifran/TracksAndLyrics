@@ -2,7 +2,10 @@ import React, {Component, Fragment} from "react";
 import { itunesApiUrl} from "../constants/Api.js"
 import Axios from "axios";
 import Swal from "sweetalert2";
+import animateScrollTo from 'animated-scroll-to';
 import DisplayLyrics from "./DisplayLyrics.js";
+import GoUPButton from "./GoUpButton.js";
+import GoUpButton from "./GoUpButton.js";
 
 class DisplaySimilarTracks extends Component{
     constructor(){
@@ -35,6 +38,11 @@ class DisplaySimilarTracks extends Component{
                 inputString: this.state.inputPlaceholder,
                 inputPlaceholder: "",
             })
+            const scrollSpeed = {
+                speed:2000,
+                minDuration: 1600,
+            }
+            animateScrollTo(document.querySelector(".trackResultWrapper"),scrollSpeed);
         }
         else(
             Swal.fire({
@@ -108,8 +116,8 @@ class DisplaySimilarTracks extends Component{
                 <h3>Results</h3>
                 <div className="tracks">
                     {jsxString}
-
                 </div>
+                <GoUpButton locationClass="header" showText="Search another song" />
             </div>
         )
     }
@@ -178,7 +186,7 @@ class DisplaySimilarTracks extends Component{
     render(){
         return(
             <Fragment>
-                <header id="#header">
+                <header className="header">
                     <div className="headerWrapper wrapper">
                         <h1>Melodies & Words</h1>
                         <form action="" onSubmit={this.handleFormSubmit}>

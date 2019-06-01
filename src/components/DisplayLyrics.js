@@ -3,6 +3,8 @@ import {apiSeedsApiUrl, apiSeedsKey} from "../constants/Api.js"
 import Qs from "qs";
 import Axios from "axios";
 import Swal from "sweetalert2";
+import animateScrollTo from 'animated-scroll-to';
+import GoUpButton from "./GoUpButton.js";
 class DisplayLyrics extends Component{
     constructor(){
         super();
@@ -65,6 +67,11 @@ class DisplayLyrics extends Component{
                         // lyric:res.data.result.track.text,
                         lyrics: res.data.result.track.text.split("\n"),
                     })
+                    const scrollSpeed = {
+                        speed: 1500,
+                        minDuration: 1200,
+                    }
+                    animateScrollTo(document.querySelector('.lyricsWrapper'),scrollSpeed)
                 }
             }).catch(error => {
                 console.log(error.message)
@@ -115,6 +122,7 @@ class DisplayLyrics extends Component{
             <div className="lyricsWrapper wrapper">
                 <h3 className="lyricsTrackName">{this.props.track}</h3>
                 {lyricsLines}
+                <GoUpButton locationClass="trackResultWrapper" showText="Back to searching results"/>
             </div>
         )
         
