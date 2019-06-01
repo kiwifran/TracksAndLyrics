@@ -5,7 +5,7 @@ img {
     width:100%;
     max-width:100;
     display: block;
-    border-radius: 20%;
+    border-radius: 10px;
 
 
 }
@@ -61,34 +61,42 @@ header {
 }
 
 main {
-    @include color($mainColor, $white);
     min-height: 100vh;
 }
-.loadingTracks,
-.tracksWrapper,
-.loadingLyrics {
-    flex-wrap:wrap;
-    padding-top: 5rem;
+.trackResultWrapper,
+.lyricsResultWrapper {
+    padding-top:3rem;
+    h3 {
+        margin-top: 0;
+    }
 }
+.trackResultWrapper {
+    @include color($mainColor, $white);
+}
+
+
 .loadingTracks,
 .loadingLyrics {
     @include flex(row, center, center, center);
-    h3 {
-        margin-top: 3rem;
-    }
-    
+    flex-wrap:wrap;
+    min-height: 50vh;
+    padding-top: 2rem;
+
 }
 .loadingTracks,
 .loadingLyrics {
     span {
         color:$accentColor;
     }
-    
 }
-.tracksWrapper {
+.tracksWrapper h3 {
+    color:$accentColor;
+}
+.tracks{
     @include flex(row, space-between, center, center);
+    flex-wrap:wrap;
     .singleTrack {
-        @include flex(column, space-between, center, center);
+        @include flex(column, flex-start, center, center);
         width:17%;
         margin-bottom: 1rem;
     }
@@ -98,12 +106,26 @@ main {
 }
 
 .imgWrapper {
-    width:100%;
+    width:90%;
     margin-bottom: 1.5rem;
 	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-
+}
+.trackInfo span {
+    display: inline-block;
+    margin-bottom: 0.6rem;
 }
 
-
-
+.lyricsResultWrapper  {
+    @include color($secondaryColor, $white);
+    
+}
+.lyricsWrapper {
+    padding-bottom: 4.5rem;
+    h3 {
+        color: $accentColor;
+    }
+    p {
+        margin:0;
+    }
+}

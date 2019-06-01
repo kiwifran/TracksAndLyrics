@@ -70,7 +70,7 @@ class DisplaySimilarTracks extends Component{
                                 data-artist={track.artistName} 
                                 data-track={track.trackName} 
                                 onDoubleClick={this.handleDbClick} >
-                                {track.artistName}<br/>
+                                <span>{track.artistName}</span><br/>
                                 {track.trackName} 
                             </p>
                     </div>
@@ -89,7 +89,7 @@ class DisplaySimilarTracks extends Component{
                                 data-artist={track.artistName} 
                                 data-track={track.trackName}  
                                 onDoubleClick={this.handleDbClick}>
-                                {track.artistName}<br/>
+                                <span>{track.artistName}</span><br/>
                                 {track.trackName}
                             </p>
                     </div>
@@ -98,7 +98,11 @@ class DisplaySimilarTracks extends Component{
         })
         return(
             <div className="tracksWrapper wrapper">
-                {jsxString}
+                <h3>Results</h3>
+                <div className="tracks">
+                    {jsxString}
+
+                </div>
             </div>
         )
     }

@@ -3,39 +3,62 @@ html {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Alegreya|BioRhyme:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cookie|Lato|Montserrat:300|Pacifico&display=swap');
 
 
 
 @mixin headingFont($size){
     font-size: ($size / 20) * 1rem;
     font-size: $size * 1px;
-    font-family: "BioRhyme", serif;
-    font-weight: 700;
+    // font-family: "BioRhyme", serif;
+    // font-family: "Alegreya", serif;
 
+    font-family: 'Pacifico', cursive;
 }
 
 @mixin bodyFont($size){
     font-size: ($size / 20) * 1rem;
     font-size: $size * 1px;
-    font-family: "Alegreya", serif;
+    // font-family: "Alegreya", serif;
+
+    font-family: 'Lato', sans-serif;
+
 }
 
 h1 {
-    @include headingFont(70);
+    @include headingFont(68);
     text-align: right;
 }
-input, .submitSearch {
-    @include bodyFont(25);
+input,
+.submitSearch {
     text-align: center;
+}
+input {
+    @include bodyFont(25);
 
 }
-main {
-    @include bodyFont(22);
+.submitSearch {
+    @include headingFont(28);
 }
+
 h3 {
     @include bodyFont(36);
 }
+.tracksWrapper h3,
+.lyricsWrapper h3{
+    @include headingFont(40);
+    text-align: center;
+    letter-spacing: 3px;
+}
 
+.tracksWrapper p {
+    line-height: 1.2;
+}
+.lyricsWrapper {
+    line-height: 1.4;
+
+}
+.lyricsWrapper,
 footer {
     @include bodyFont(18);
     text-align: center;
