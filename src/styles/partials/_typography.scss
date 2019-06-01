@@ -52,7 +52,9 @@ h3 {
     text-align: center;
     letter-spacing: 3px;
 }
-
+.trackInfo span {
+    @include headingFont(22);
+}
 .tracksWrapper p {
     line-height: 1.2;
 }

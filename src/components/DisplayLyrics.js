@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {apiSeedsApiUrl, apiSeedsKey} from "../constants/Api.js"
-import Qs from 'qs';
+import Qs from "qs";
 import Axios from "axios";
+import Swal from "sweetalert2";
 class DisplayLyrics extends Component{
     constructor(){
         super();
@@ -36,11 +37,11 @@ class DisplayLyrics extends Component{
             //     });
             //apiseed proxy
             Axios({
-                url: 'https://proxy.hackeryou.com',
-                //OR url: 'https://proxy.hackeryou.com',
-                dataResponse: 'json',
+                url: "https://proxy.hackeryou.com",
+                //OR url: "https://proxy.hackeryou.com",
+                dataResponse: "json",
                 paramsSerializer: function (params) {
-                    return Qs.stringify(params, { arrayFormat: 'brackets' })
+                    return Qs.stringify(params, { arrayFormat: "brackets" })
                 },
                 params: {
                     // reqUrl: "https://api.musixmatch.com/ws/1.1/track.search?",
@@ -54,7 +55,7 @@ class DisplayLyrics extends Component{
                         // "page_size": 5
                     },
                     // proxyHeaders: {
-                    //     'header_params': 'value'
+                    //     "header_params": "value"
                     // },
                     xmlToJSON: false
                 }
@@ -67,7 +68,13 @@ class DisplayLyrics extends Component{
                 }
             }).catch(error => {
                 console.log(error.message)
-                alert("sorry, we cannot find the lyrics of the song😢")
+                Swal.fire({
+                    title: "Sorry",
+                    text: "We do not have the lyrics of the song😓",
+                    background: "#1a3543",
+                    confirmButtonText: "Fine",
+                    confirmButtonColor: "#7a9aaa",
+                })
             }
             )
         //     Axios({
@@ -92,7 +99,7 @@ class DisplayLyrics extends Component{
         //         // }
         //         console.log(res);
                 
-        //         // console.log(res.data.result.track.text.split('\n').slice(0,11));
+        //         // console.log(res.data.result.track.text.split("\n").slice(0,11));
         //     }).catch(error => {
         //         console.log(error.message)
         //         alert("sorry, we cannot find the lyrics of the song😢")

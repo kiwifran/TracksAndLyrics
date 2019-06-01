@@ -1,6 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment} from "react";
 import { itunesApiUrl} from "../constants/Api.js"
 import Axios from "axios";
+import Swal from "sweetalert2";
 import DisplayLyrics from "./DisplayLyrics.js";
 
 class DisplaySimilarTracks extends Component{
@@ -29,14 +30,20 @@ class DisplaySimilarTracks extends Component{
     }
     handleFormSubmit =(e)=>{
         e.preventDefault();
-        if(this.state.inputPlaceholder!==""){
+        if (this.state.inputPlaceholder !== "" &&  /^\s*$/.test(this.state.inputPlaceholder) === false){
             this.setState({
                 inputString: this.state.inputPlaceholder,
                 inputPlaceholder: "",
             })
         }
         else(
-            alert("check your spelling!")
+            Swal.fire({
+                title: "Input Error!",
+                text: "Please check your input",
+                background:"#1a3543",
+                confirmButtonText: "Cool",
+                confirmButtonColor: "#7a9aaa",
+            })
         )
     }
     handleDbClick =(e)=>{
@@ -123,7 +130,7 @@ class DisplaySimilarTracks extends Component{
         //             lyrics: res.data.result.track.text.split("\n"),
         //         })
         //     }
-        //     // console.log(res.data.result.track.text.split('\n').slice(0,11));
+        //     // console.log(res.data.result.track.text.split("\n").slice(0,11));
         // }).catch(error => {
         //     console.log(error.message)
         // }
@@ -140,7 +147,8 @@ class DisplaySimilarTracks extends Component{
                     country:"ca",
                     media:"music",
                     limit:25,
-                    lang: "en_us"
+                    lang: "en_us",
+                    entity:"musicTrack"
                 }
 
             }).then((res) => {
@@ -155,6 +163,13 @@ class DisplaySimilarTracks extends Component{
 
             }).catch(error => {
                 console.log(error)
+                Swal.fire({
+                    title: "Sorry",
+                    text: "We cannot find your song now😢",
+                    background: "#1a3543",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#7a9aaa",
+                })
             })
         }
         

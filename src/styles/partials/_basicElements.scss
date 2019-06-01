@@ -27,3 +27,11 @@ body {
     max-width:1600px;
     margin: 0 auto;
 }
+h2.swal2-title,
+.swal2-content>div:first-child {
+    color:$white;
+}
+button.swal2-confirm.swal2-styled {
+    font-weight: bold;
+    color: $black;
+}
