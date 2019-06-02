@@ -66,7 +66,7 @@ class DisplaySimilarTracks extends Component{
     renderLoadingPage=()=>{
         return(
             <div className="loadingTracks wrapper">
-                <h3>Please <span>type in</span>  track and artist <span>♫</span></h3>
+                <h3>Please <span>type in</span>  track  or artist name to search <span>♫</span></h3>
             </div>
         )
     }

@@ -1,7 +1,7 @@
-
+//header
 header {
+    min-height: 100vh;
     position: relative;
-    height: 100vh;
     padding-top:1.5rem;
     background-image:url(/assets/headerBackground.jpg);
     background-size: cover;
@@ -10,47 +10,41 @@ header {
     margin-top: 0;
     margin-bottom: 13.8rem;
     color:$black;
-
 	-webkit-animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
 	animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
-
     }
-
     form {
     @include flex(column, center, center, center )
     }
-    
 }
-.musicSign1{
+//rellax elements
+.musicSign1 {
     top:26%;
     right:5%;
-
 }
-.musicSign2{
+.musicSign2 {
     top:47%;
-    left:8%;
+    left:6%;
 }
-.musicSign3{
+.musicSign3 {
     top:45%;
     right:27%;
     font-size: 80px;
 }
-.musicSign4{
+.musicSign4 {
     top:29%;
-    left:32%;
+    left:28%;
 }
-.musicSign5{
+.musicSign5 {
     top:80%;
     right:20%;
 }
-.musicSign6{
+.musicSign6 {
     top:7%;
-    left:16%;
+    left:12%;
     font-size: 90px;
 }
-main {
-    min-height: 100vh;
-}
+//main section
 .quickScrollUp {
     width:35%;
     display: block;
@@ -59,7 +53,7 @@ main {
 }
 .trackResultWrapper,
 .lyricsResultWrapper {
-    padding-top:3rem;
+    padding-top:2.5rem;
     h3 {
         margin-top: 0;
     }
@@ -73,19 +67,15 @@ main {
     flex-wrap:wrap;
     min-height: 50vh;
     padding-top: 2rem;
-
 }
-.loadingTracks,
-.loadingLyrics {
-    span {
-        color:$accentColor;
-    }
+.loadingTracks span,
+.loadingLyrics span,
+.tracksWrapper h3,
+.lyricsWrapper h3 {
+    color:$accentColor;
 }
 .tracksWrapper {
     padding-bottom: 2rem;
-    h3 {
-    color:$accentColor;
-}
 }
 .tracks{
     @include flex(row, space-between, center, center);
@@ -93,13 +83,12 @@ main {
     .singleTrack {
         @include flex(column, flex-start, center, center);
         width:17%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
     }
     p {
         margin-bottom: 1rem;
     }
 }
-
 .imgWrapper {
     width:90%;
     margin-bottom: 1.5rem;
@@ -115,18 +104,12 @@ main {
         display: inline-block;
         margin-bottom: 0.6rem;
     }
-    
 }
-
 .lyricsResultWrapper  {
     @include color($secondaryColor, $white);
-    
 }
 .lyricsWrapper {
     padding-bottom: 4.5rem;
-    h3 {
-        color: $accentColor;
-    }
     p {
         margin:0;
     }

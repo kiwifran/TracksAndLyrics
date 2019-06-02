@@ -122,7 +122,7 @@ class DisplayLyrics extends Component{
             <div className="lyricsWrapper wrapper">
                 <h3 className="lyricsTrackName">{this.props.track}</h3>
                 {lyricsLines}
-                <GoUpButton locationClass="trackResultWrapper" showText="Back to searching results"/>
+                <GoUpButton locationClass="trackResultWrapper" showText="Back to search results"/>
             </div>
         )
         
@@ -130,7 +130,7 @@ class DisplayLyrics extends Component{
     renderLoading=()=>{
         return (
             <div className="loadingLyrics wrapper">
-                <h3>Please <span>double click</span> on one song's name to check its lyrics after songs show on the page <span>♬</span></h3>
+                <h3>Please <span>double click</span> on the song's name to check its lyrics after search results show on the page <span>♬</span></h3>
             </div>
         
         )
