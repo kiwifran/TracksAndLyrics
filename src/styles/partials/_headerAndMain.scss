@@ -91,7 +91,7 @@ header {
         margin-bottom: 1.2rem;
     }
     p {
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
     }
 }
 .imgWrapper {
@@ -101,16 +101,15 @@ header {
 	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-.trackInfo {
-    &:hover,
-    &:focus {
+.trackInfo>P:first-child:hover,
+.trackInfo>P:first-child:focus,
+.trackName:hover,
+.trackName:focus {
 	-webkit-animation: text-pop-up-top 0.5s ease-in-out both;
 	animation: text-pop-up-top 0.5s ease-in-out both;
-    }
-    span{
-        display: inline-block;
-        margin-bottom: 0.6rem;
-    }
+}
+.trackName:active {
+    color:$accentColor;
 }
 .lyricsResultWrapper  {
     @include color($secondaryColor, $white);

@@ -12,6 +12,7 @@ class DisplayTracks extends Component{
     constructor(){
         super();
         this.state={
+            //store track search results coming back from the API call, users' input for track search and users' choice of the song that they want to check the lyrics.
             backMusicData: [],
             inputPlaceholder: "",
             inputString:"",
@@ -19,23 +20,19 @@ class DisplayTracks extends Component{
             artistUserChoice:"",
         }	
     }
+    //when users are typing in the search bar， getting the value of users' input.
     handleInputChange = (e) => {
         this.setState({
             inputPlaceholder: e.target.value
         })
     }
+    //when users click in the search bar text, clear the search bar for a better user experience.
     handleInputClick=()=>{
         this.setState({
             inputPlaceholder:"",
         })
     }
-    handleDbClick =(e)=>{
-        console.log(e.target);
-        this.setState({
-            trackUserChoice:e.target.dataset.track,
-            artistUserChoice:e.target.dataset.artist,
-        })
-    }
+    //when users make up their mind for what to search and submit the form, first, check if users input has actual content(instead of empty string or string made up of spaces), then store users' input as a final search term. Render a reminder for users if they submit the form without typing actual words.
     handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.inputPlaceholder !== "" && /^\s*$/.test(this.state.inputPlaceholder) === false) {
@@ -75,20 +72,25 @@ class DisplayTracks extends Component{
                     <div key={track.trackId} className="singleTrack">
                             <div className="imgWrapper">
                                 <a 
-                                    tabIndex={5 + i *2 + 1} 
-                                    target="_blank" href={track.trackViewUrl}  
+                                    tabIndex={6 + i *3 + 1} 
+                                    target="_blank" 
+                                    href={track.trackViewUrl}  
                                     aira-label="go to track's Itunes page">
                                         <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
                                 </a>
                             </div>
-                            <p tabIndex={5 + i *2 + 2} 
-                                className="trackInfo" 
-                                data-artist={track.artistName} 
-                                data-track={track.trackName} 
-                                onDoubleClick={this.handleDbClick} >
-                                <span>{track.artistName}</span><br/>
-                                {track.trackName} 
-                            </p>
+                            <div className="trackInfo" >
+                                <p tabIndex={6 + i * 3 + 2} >
+                                    {track.artistName}
+                                </p>
+                                <p tabIndex={6 + i * 3 + 3}
+                                    className="trackName"
+                                    data-artist={track.artistName}
+                                    data-track={track.trackName}
+                                    onDoubleClick={this.handleDbClick}>
+                                    {track.trackName}
+                                </p>
+                            </div>
                     </div>
                 )
             } else {
@@ -96,39 +98,51 @@ class DisplayTracks extends Component{
                     <div key={track.trackID} className="singleTrack">
                             <div className="imgWrapper">
                                 <a 
-                                    tabIndex={5 + i *2 + 1} 
+                                    tabIndex={6 + i *3 + 1} 
                                     target="_blank" 
                                     href={track.collectionViewUrl} 
                                     aira-label="go to track's Itunes page">
                                         <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
                                 </a>
                             </div>
-                            <p tabIndex={5 + i *2 + 2} 
-                                className="trackInfo"
-                                data-artist={track.artistName} 
-                                data-track={track.trackName}  
-                                onDoubleClick={this.handleDbClick}>
-                                <span>{track.artistName}</span>
-                                <br/>
-                                {track.trackName}
-                            </p>
+                            <div  className="trackInfo" >
+                                <p tabIndex={6 + i * 3 + 2}>
+                                    {track.artistName}
+                                </p>
+                                <p tabIndex={6 + i * 3 + 3}
+                                    className="trackName"
+                                    data-artist={track.artistName}
+                                    data-track={track.trackName}
+                                    onDoubleClick={this.handleDbClick}>
+                                    {track.trackName}
+                                </p>
+                            </div>
                     </div>
                 )
             }
         })
         return(
             <div className="tracksWrapper wrapper">
-                <h3>Results</h3>
+                <h3 tabIndex="6">Results</h3>
                 <div className="tracks">
                     {jsxString}
                 </div>
-                <GoUpButton tabIndex="54" locationClass="header" showText="Search another song" />
+                <GoUpButton tabIndex="79" locationClass="header" showText="Search another song" />
             </div>
         )
     }
+    //if users click on a track name after the search results show on the page, store users' choice in the state and pass the state values to displayLyrics component to trigger the second API call in that component.
+    handleDbClick = (e) => {
+        this.setState({
+            trackUserChoice: e.target.dataset.track,
+            artistUserChoice: e.target.dataset.artist,
+        })
+    }
+    //after the component has mounted, begin to use rellax.js
     componentDidMount(){
         const rellax = new Rellax(".rellax");
     }
+    //If the input string changes in the state, make the first API call to search tracks and store the data coming. The API call will Only be triggered if users search for a term that differs from the last time. Render a notice if API call fails.
     componentDidUpdate(prevProps, prevState) {
         if(this.state.inputString!==prevState.inputString){
             Axios({
@@ -143,14 +157,11 @@ class DisplayTracks extends Component{
                     lang: "en_us",
                     entity:"musicTrack"
                 }
-            }).then((res) => {
-                console.log(res.data.results);
-                
+            }).then((res) => {                
                 this.setState({
                     backMusicData:res.data.results,
                 })
             }).catch(error => {
-                console.log(error)
                 Swal.fire({
                     title: "Sorry",
                     text: "We cannot find your song now😢",

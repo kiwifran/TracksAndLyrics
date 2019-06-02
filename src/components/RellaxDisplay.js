@@ -1,4 +1,5 @@
 import React from "react";
+//show scrolling music signs in the header with rellax.js
 function RellaxDisplay(){
     return(
         <div aira-hidden="true" 

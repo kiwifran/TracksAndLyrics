@@ -9,22 +9,25 @@ class DisplayLyrics extends Component{
     constructor(){
         super();
         this.state={
+            //holding lyrics coming back from the second API call for lyrics search
             lyrics: [],
         }	
     }
+    //show lyrics line by line on the page with the track name below the track search results
     renderLyrics = () => {
         const lyricsLines = this.state.lyrics.map((line, index) => {
             return (<p key={index}>{line} ♪</p>)
         })
         return (
-            <div tabIndex="55" className="lyricsWrapper wrapper">
+            <div tabIndex="80" className="lyricsWrapper wrapper">
                 <h3 className="lyricsTrackName">{this.props.track}</h3>
                 {lyricsLines}
-                <GoUpButton tabIndex="56" locationClass="trackResultWrapper" showText="Back to search results" />
+                <GoUpButton tabIndex="81" locationClass="trackResultWrapper" showText="Back to search results" />
             </div>
         )
 
     }
+    //provide a loading page and information about the app for users
     renderLoading = () => {
         return (
             <div className="loadingLyrics wrapper">
@@ -32,9 +35,10 @@ class DisplayLyrics extends Component{
             </div>
         )
     }
+    //check if the users are looking for the lyrics of a new song, if so, call the lyrics API and store the value in the state. if the lyrics for the song cannot be found in the API database, provide the notice for users.
     componentDidUpdate(prevProps, prevState){
         if (this.props.artist !== prevProps.artist || this.props.track !== prevProps.track) {
-            //apiseed proxy
+            //using proxy to call Apiseeds lyrics API
             Axios({
                 url: "https://proxy.hackeryou.com",
                 dataResponse: "json",
@@ -60,7 +64,6 @@ class DisplayLyrics extends Component{
                     animateScrollTo(document.querySelector('.lyricsWrapper'),scrollSpeed)
                 }
             }).catch(error => {
-                console.log(error.message)
                 Swal.fire({
                     title: "Sorry",
                     text: "We do not have the lyrics of the song😓",
