@@ -8,5 +8,4 @@ function GoUpButton (props){
         <button className="quickScrollUp" onClick={()=>{scrollUp()}} > {props.showText}</button>
     )
 }
-
 export default GoUpButton;

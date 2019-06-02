@@ -1,10 +1,9 @@
 import React, {Component, Fragment} from "react";
-import { itunesApiUrl} from "../constants/Api.js"
+import {itunesApiUrl} from "../constants/Api.js"
 import Axios from "axios";
 import Swal from "sweetalert2";
 import animateScrollTo from 'animated-scroll-to';
 import Rellax from "rellax";
-
 import DisplayLyrics from "./DisplayLyrics.js";
 import GoUpButton from "./GoUpButton.js";
 import RellaxDisplay from "./RellaxDisplay.js";
@@ -14,28 +13,25 @@ class DisplaySimilarTracks extends Component{
         super();
         this.state={
             backMusicData: [],
-            // musicApiBack: false,
             inputPlaceholder: "",
             inputString:"",
             trackUserChoice: "",
             artistUserChoice:"",
-            // lyric: "",
-            // lyrics: []
         }	
     }
-    handleTrackChange = (e) => {
+    handleInputChange = (e) => {
         this.setState({
             inputPlaceholder: e.target.value
         })
     }
-    handleTrackClick=()=>{
+    handleInputClick=()=>{
         this.setState({
             inputPlaceholder:"",
         })
     }
     handleFormSubmit =(e)=>{
         e.preventDefault();
-        if (this.state.inputPlaceholder !== "" &&  /^\s*$/.test(this.state.inputPlaceholder) === false){
+        if (this.state.inputPlaceholder !== "" && /^\s*$/.test(this.state.inputPlaceholder) === false){
             this.setState({
                 inputString: this.state.inputPlaceholder,
                 inputPlaceholder: "",
@@ -66,7 +62,7 @@ class DisplaySimilarTracks extends Component{
     renderLoadingPage=()=>{
         return(
             <div className="loadingTracks wrapper">
-                <h3>Please <span>type in</span>  track  or artist name to search <span>♫</span></h3>
+                <h3>Please <span>type in</span> track or artist name to search <span>♫</span></h3>
             </div>
         )
     }
@@ -92,7 +88,6 @@ class DisplaySimilarTracks extends Component{
                             </p>
                     </div>
                 )
-
             } else {
                 jsxString.push (
                     <div key={track.trackID} className="singleTrack">
@@ -106,7 +101,8 @@ class DisplaySimilarTracks extends Component{
                                 data-artist={track.artistName} 
                                 data-track={track.trackName}  
                                 onDoubleClick={this.handleDbClick}>
-                                <span>{track.artistName}</span><br/>
+                                <span>{track.artistName}</span>
+                                <br/>
                                 {track.trackName}
                             </p>
                     </div>
@@ -125,27 +121,6 @@ class DisplaySimilarTracks extends Component{
     }
     componentDidMount(){
         const rellax = new Rellax(".rellax");
-
-        // Axios({
-        //     url: `https://orion.apiseeds.com/api/music/lyric/${this.state.artist}/${this.state.track}`,
-        //     method: "GET",
-        //     params: {
-        //         apikey: "NwvEEhvTSAjQ5YEndl9ylxZ6OH90YtNtcDsrMWU3vShjz1dsY948lmjdvlbAQv8h",
-
-        //     }
-
-        // }).then((res) => {
-        //     if (res.data.result.track.name === this.state.track) {
-        //         this.setState({
-        //             // lyric:res.data.result.track.text,
-        //             lyrics: res.data.result.track.text.split("\n"),
-        //         })
-        //     }
-        //     // console.log(res.data.result.track.text.split("\n").slice(0,11));
-        // }).catch(error => {
-        //     console.log(error.message)
-        // }
-        // )
     }
     componentDidUpdate(prevProps, prevState) {
         if(this.state.inputString!==prevState.inputString){
@@ -161,17 +136,12 @@ class DisplaySimilarTracks extends Component{
                     lang: "en_us",
                     entity:"musicTrack"
                 }
-
             }).then((res) => {
                 console.log(res.data.results);
                 
                 this.setState({
                     backMusicData:res.data.results,
                 })
-
-                
-                
-
             }).catch(error => {
                 console.log(error)
                 Swal.fire({
@@ -183,8 +153,6 @@ class DisplaySimilarTracks extends Component{
                 })
             })
         }
-        
-        
     }
     render(){
         return(
@@ -196,32 +164,26 @@ class DisplaySimilarTracks extends Component{
                         <form action="" onSubmit={this.handleFormSubmit}>
                             <label htmlFor="track" className="visuallyHidden"></label>
                             <input
-                                onChange={this.handleTrackChange}
+                                onChange={this.handleInputChange}
                                 type="text"
                                 id="trackInput"
                                 value={this.state.inputPlaceholder}
                                 placeholder="type in the track name"
-                                onClick={this.handleTrackClick}
+                                onClick={this.handleInputClick}
                             />
                             <button className="submitSearch">Find it</button>
                         </form>
                     </div>
                 </header>
-
                 <main>
                     <div className="trackResultWrapper">
                         {this.state.backMusicData.length > 0
                             ? this.displayTracks()
                             : this.renderLoadingPage()}
                     </div>
-                    
-
                     <DisplayLyrics track={this.state.trackUserChoice} artist={this.state.artistUserChoice}/>
                 </main>
             </Fragment>
-            
-                
-
         )
     }
 }
