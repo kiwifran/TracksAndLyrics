@@ -56,6 +56,7 @@ class DisplayTracks extends Component{
             })
         )
     }
+    //provide a loading page and information about the app for users
     renderLoadingPage=()=>{
         return(
             <div className="loadingTracks wrapper">
@@ -63,13 +64,14 @@ class DisplayTracks extends Component{
             </div>
         )
     }
-    
+    //display search results on the page. When users click on the image of a song, the app will open a new tab to show the song's Itunes page. 
+    //Though the API provides a trackId for every track, but when I used the trackId as the key of the single track wrapper, sometimes react would tell me there were repeated keys, so I used the index as the key for single track wrapper div to avoid key repetition
     displayTracks=()=>{
         const jsxString = [];
         this.state.backMusicData.forEach((track, i) => {
             if (track.trackViewUrl !== undefined) {
                 jsxString.push(
-                    <div key={track.trackId} className="singleTrack">
+                    <div key={i} className="singleTrack">
                             <div className="imgWrapper">
                                 <a 
                                     tabIndex={6 + i *3 + 1} 
@@ -95,7 +97,7 @@ class DisplayTracks extends Component{
                 )
             } else {
                 jsxString.push (
-                    <div key={track.trackID} className="singleTrack">
+                    <div key={i} className="singleTrack">
                             <div className="imgWrapper">
                                 <a 
                                     tabIndex={6 + i *3 + 1} 
