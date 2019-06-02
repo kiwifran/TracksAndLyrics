@@ -1,9 +1,9 @@
 //variables and mixins
 $mainColor: #1a3543;
 $secondaryColor: #3c1706;
-$shadowColor: rgba(122, 154, 170, 0.123);
+$shadowColor: rgba(122, 154, 170, 0.122);
 $decorationColor:rgba(240, 119, 63, 0.361);
-$accentColor:#d77649;
+$accentColor:rgb(215, 118, 73);
 $white: rgba(229, 251, 252, 1);
 $black:#21282f;
 
@@ -34,6 +34,27 @@ img {
     max-width:100;
     display: block;
     border-radius: 10px;
+    transition: all 1s;
+
+}
+a {
+    text-decoration: none;
+    color:inherit;
+    transform: color 0.8s;
+    &:hover,
+    &:focus {
+        color:$accentColor;
+    }
+    &::active {
+        color:$decorationColor;
+    }
+}
+img:hover,
+main a:focus>img,
+main a:active>img {
+        transform: scale(1.15);
+        -webkit-box-shadow: 8px 12px 8px 5px $shadowColor;
+        -moz-box-shadow: 8px 12px 8px 5px $shadowColor;
 }
 .wrapper {
     width:85%;
@@ -53,16 +74,28 @@ button {
     border:none;
 }
 input {
-    border-bottom:0.2px solid $white;
     margin-bottom: 1rem;
+    padding-top: 7px;
     padding-bottom: 10px;
     background: transparent;
+    &:focus,
+    &:active {
+        border-bottom:0.2px solid $white;
+    }
 }
 button {
     padding:5px 10px;
     border-radius: 10px;
     background: rgb(211,105,55);
     background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
+    &:hover,
+    &:focus {
+        -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+        animation: heartbeat 1.5s ease-in-out infinite both;
+    }
+    &:active {
+        color:$black;
+    }
 }
 //sweet alert settings
 h2.swal2-title,

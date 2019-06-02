@@ -29,35 +29,35 @@ class DisplaySimilarTracks extends Component{
             inputPlaceholder:"",
         })
     }
-    handleFormSubmit =(e)=>{
-        e.preventDefault();
-        if (this.state.inputPlaceholder !== "" && /^\s*$/.test(this.state.inputPlaceholder) === false){
-            this.setState({
-                inputString: this.state.inputPlaceholder,
-                inputPlaceholder: "",
-            })
-            const scrollSpeed = {
-                speed:2000,
-                minDuration: 1600,
-            }
-            animateScrollTo(document.querySelector(".trackResultWrapper"),scrollSpeed);
-        }
-        else(
-            Swal.fire({
-                title: "Input Error!",
-                text: "Please check your input",
-                background:"#1a3543",
-                confirmButtonText: "Cool",
-                confirmButtonColor: "#7a9aaa",
-            })
-        )
-    }
     handleDbClick =(e)=>{
         console.log(e.target);
         this.setState({
             trackUserChoice:e.target.dataset.track,
             artistUserChoice:e.target.dataset.artist,
         })
+    }
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        if (this.state.inputPlaceholder !== "" && /^\s*$/.test(this.state.inputPlaceholder) === false) {
+            this.setState({
+                inputString: this.state.inputPlaceholder,
+                inputPlaceholder: "",
+            })
+            const scrollSpeed = {
+                speed: 2000,
+                minDuration: 1600,
+            }
+            animateScrollTo(document.querySelector(".trackResultWrapper"), scrollSpeed);
+        }
+        else (
+            Swal.fire({
+                title: "Input Error!",
+                text: "Please check your input",
+                background: "#1a3543",
+                confirmButtonText: "Cool",
+                confirmButtonColor: "#7a9aaa",
+            })
+        )
     }
     renderLoadingPage=()=>{
         return(

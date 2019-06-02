@@ -75,7 +75,9 @@ class DisplayLyrics extends Component{
     render(){
         return(
             <div className="lyricsResultWrapper">
-                {this.state.lyrics.length >0?this.renderLyrics():this.renderLoading()}
+                {this.state.lyrics.length >0
+                ?this.renderLyrics()
+                :this.renderLoading()}
             </div>
         )
     }
