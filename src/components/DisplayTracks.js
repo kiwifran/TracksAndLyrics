@@ -8,7 +8,7 @@ import DisplayLyrics from "./DisplayLyrics.js";
 import GoUpButton from "./GoUpButton.js";
 import RellaxDisplay from "./RellaxDisplay.js";
 
-class DisplaySimilarTracks extends Component{
+class DisplayTracks extends Component{
     constructor(){
         super();
         this.state={
@@ -132,7 +132,7 @@ class DisplaySimilarTracks extends Component{
                     term:this.state.inputString,
                     country:"ca",
                     media:"music",
-                    limit:25,
+                    limit:24,
                     lang: "en_us",
                     entity:"musicTrack"
                 }
@@ -187,4 +187,4 @@ class DisplaySimilarTracks extends Component{
         )
     }
 }
-export default  DisplaySimilarTracks;
+export default  DisplayTracks;

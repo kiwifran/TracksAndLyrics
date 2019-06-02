@@ -13,10 +13,10 @@ html {
     font-family: 'Varela Round', sans-serif;
 }
 .musicSign {
-    @include headingFont(60);
+    @include headingFont(80);
 }
 h1 {
-    @include headingFont(78);
+    @include headingFont(100);
     text-align: right;
 }
 input,
@@ -54,4 +54,64 @@ h3 {
 footer {
     @include bodyFont(18);
     text-align: center;
+}
+
+//media queries 
+@media (max-width:1340px) {
+    h1 {
+    @include headingFont(86);
+    }
+}
+@media (max-width:1200px) {
+    h1 {
+        @include headingFont(75);
+    }
+    .musicSign {
+    @include headingFont(60);
+}
+}
+@media (max-width:1000px) {
+    h1 {
+        @include headingFont(65);
+    }
+    input {
+        @include bodyFont(20);
+    }
+    button {
+        @include headingFont(20);
+    }
+    h3 {
+    @include bodyFont(27);
+    }
+
+}
+@media (max-width:750px) {
+    h1 {
+        @include headingFont(50);
+    }
+}
+@media (max-width:650px) {
+    h1 {
+        text-align: center;
+    }
+
+}
+@media (max-width:520px) {
+    h1 {
+        @include headingFont(40); 
+    }
+    .trackInfo {
+        @include bodyFont(18);
+        span {
+            @include headingFont(20);
+        }
+    }
+}
+@media (max-width:400px) {
+    h1 {
+        @include headingFont(35);
+    }
+    footer {
+    @include bodyFont(15);
+    }
 }

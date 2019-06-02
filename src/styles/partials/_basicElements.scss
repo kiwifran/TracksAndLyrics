@@ -53,8 +53,8 @@ img:hover,
 main a:focus>img,
 main a:active>img {
         transform: scale(1.15);
-        -webkit-box-shadow: 8px 12px 8px 5px $shadowColor;
-        -moz-box-shadow: 8px 12px 8px 5px $shadowColor;
+        -webkit-box-shadow: 8px 12px 7px 4px $shadowColor;
+        -moz-box-shadow: 8px 12px 7px 4px $shadowColor;
 }
 .wrapper {
     width:85%;
@@ -105,4 +105,19 @@ h2.swal2-title,
 button.swal2-confirm.swal2-styled {
     font-weight: bold;
     color: $black;
+}
+//media queries 
+@media (max-width:850px) {
+    .wrapper {
+        width: 92%;
+    }
+    input,
+    button {
+        width:55%;
+    }
+}
+@media (max-width:650px) {
+    .musicSign {
+        display: none;
+    }
 }
