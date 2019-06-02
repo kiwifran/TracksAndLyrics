@@ -5,7 +5,7 @@ It is worth mentioning that when I designed the app, I prepared to display searc
 
 Thank you for reviewing my project!
 
-My Thanks and credits to:
+My Thanks to:
 1.The Icon of Music by Made x Made from the Noun Project, I used it in my favicon https://thenounproject.com/search/?q=music&i=2110791;
 2.The header background image by Ameen Fahmy on Unsplash https://unsplash.com/@ameenfahmy_
 3.Animista http://animista.net/
