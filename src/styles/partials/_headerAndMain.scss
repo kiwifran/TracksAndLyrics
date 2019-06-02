@@ -11,7 +11,12 @@ header {
     margin-bottom: 45vh;
     color:$black;
 	-webkit-animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
-	animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+    animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+    &:focus,
+    &:active {
+        color:$secondaryColor;
+        border: 1px solid $accentColor;
+    }
     }
     form {
     @include flex(column, center, center, center )

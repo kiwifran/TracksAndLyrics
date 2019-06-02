@@ -41,13 +41,13 @@ a {
     text-decoration: none;
     color:inherit;
     transform: color 0.8s;
-    &:hover,
-    &:focus {
-        color:$accentColor;
-    }
-    &::active {
+    &:active {
         color:$decorationColor;
     }
+}
+footer p:first-child:focus a,
+footer p:first-child:hover a {
+    color: $accentColor
 }
 img:hover,
 main a:focus>img,

@@ -5,7 +5,11 @@ function GoUpButton (props){
         animateScrollTo(document.querySelector(`.${props.locationClass}`))
     }
     return(
-        <button className="quickScrollUp" onClick={()=>{scrollUp()}} > {props.showText}</button>
+        <button 
+            tabIndex={props.tabIndex}
+            className="quickScrollUp" 
+            onClick={()=>{scrollUp()}} > {props.showText}
+        </button>
     )
 }
 export default GoUpButton;

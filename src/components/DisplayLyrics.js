@@ -17,10 +17,10 @@ class DisplayLyrics extends Component{
             return (<p key={index}>{line} ♪</p>)
         })
         return (
-            <div className="lyricsWrapper wrapper">
+            <div tabIndex="55" className="lyricsWrapper wrapper">
                 <h3 className="lyricsTrackName">{this.props.track}</h3>
                 {lyricsLines}
-                <GoUpButton locationClass="trackResultWrapper" showText="Back to search results" />
+                <GoUpButton tabIndex="56" locationClass="trackResultWrapper" showText="Back to search results" />
             </div>
         )
 
@@ -28,7 +28,7 @@ class DisplayLyrics extends Component{
     renderLoading = () => {
         return (
             <div className="loadingLyrics wrapper">
-                <h3>Please <span>double click</span> on the song's name to check its lyrics after search results show on the page <span>♬</span></h3>
+                <h3 tabIndex="5">Please <span>double click</span> on the song's name to check its lyrics after search results show on the page <span>♬</span></h3>
             </div>
         )
     }

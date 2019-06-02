@@ -62,23 +62,26 @@ class DisplayTracks extends Component{
     renderLoadingPage=()=>{
         return(
             <div className="loadingTracks wrapper">
-                <h3>Please <span>type in</span> track or artist name to search <span>♫</span></h3>
+                <h3 tabIndex="4">Please <span>type in</span> track or artist name to search <span>♫</span></h3>
             </div>
         )
     }
     
     displayTracks=()=>{
         const jsxString = [];
-        this.state.backMusicData.forEach((track) => {
+        this.state.backMusicData.forEach((track, i) => {
             if (track.trackViewUrl !== undefined) {
                 jsxString.push(
                     <div key={track.trackId} className="singleTrack">
                             <div className="imgWrapper">
-                                <a target="_blank" href={track.trackViewUrl}>
-                                    <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
+                                <a 
+                                    tabIndex={5 + i *2 + 1} 
+                                    target="_blank" href={track.trackViewUrl}  
+                                    aira-label="go to track's Itunes page">
+                                        <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
                                 </a>
                             </div>
-                            <p 
+                            <p tabIndex={5 + i *2 + 2} 
                                 className="trackInfo" 
                                 data-artist={track.artistName} 
                                 data-track={track.trackName} 
@@ -92,12 +95,16 @@ class DisplayTracks extends Component{
                 jsxString.push (
                     <div key={track.trackID} className="singleTrack">
                             <div className="imgWrapper">
-                                <a target="_blank" href={track.collectionViewUrl}>
-                                    <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
+                                <a 
+                                    tabIndex={5 + i *2 + 1} 
+                                    target="_blank" 
+                                    href={track.collectionViewUrl} 
+                                    aira-label="go to track's Itunes page">
+                                        <img src={track.artworkUrl100} alt={`picture of the album ` + track.collectionCensoredName} />
                                 </a>
                             </div>
-                            <p 
-                                className="trackInfo" 
+                            <p tabIndex={5 + i *2 + 2} 
+                                className="trackInfo"
                                 data-artist={track.artistName} 
                                 data-track={track.trackName}  
                                 onDoubleClick={this.handleDbClick}>
@@ -115,7 +122,7 @@ class DisplayTracks extends Component{
                 <div className="tracks">
                     {jsxString}
                 </div>
-                <GoUpButton locationClass="header" showText="Search another song" />
+                <GoUpButton tabIndex="54" locationClass="header" showText="Search another song" />
             </div>
         )
     }
@@ -160,10 +167,19 @@ class DisplayTracks extends Component{
                 <header className="header">
                     <div className="headerWrapper wrapper">
                     <RellaxDisplay />
-                        <h1>Melodies & Words</h1>
+                        <h1 tabIndex="1">Melodies & Words</h1>
                         <form action="" onSubmit={this.handleFormSubmit}>
-                            <label htmlFor="track" className="visuallyHidden"></label>
+                            <label 
+                                aria-hidden="true"
+                                tabIndex ="2"
+                                htmlFor="track" 
+                                className="visuallyHidden">
+                            </label>
                             <input
+                                aria-hidden="true"
+                                tabIndex ="3"
+                                aria-live="polite"
+                                role="status"
                                 onChange={this.handleInputChange}
                                 type="text"
                                 id="trackInput"
