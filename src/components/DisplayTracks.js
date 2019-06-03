@@ -159,7 +159,7 @@ class DisplayTracks extends Component{
                     lang: "en_us",
                     entity:"musicTrack"
                 }
-            }).then((res) => {                
+            }).then((res) => {       
                 this.setState({
                     backMusicData:res.data.results,
                 })
