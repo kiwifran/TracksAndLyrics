@@ -148,7 +148,7 @@ class DisplayTracks extends Component{
     //If the input string changes in the state, make the first API call to search tracks and store the data coming. The API call will Only be triggered if users search for a term that differs from the last time. Render a notice if API call fails.
     componentDidUpdate(prevProps, prevState) {
         if(this.state.inputString!==prevState.inputString){
-            
+            //using proxy to call Itunes API
             Axios({
                 method:"GET",
                 url: "https://proxy.hackeryou.com",
