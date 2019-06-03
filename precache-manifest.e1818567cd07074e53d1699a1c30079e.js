@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "104bf3b372304441cf9ff21debe395b6",
+    "revision": "e87666f15c28c56076de42718a4b73d0",
     "url": "/TracksAndLyrics/index.html"
   },
   {
-    "revision": "2a369ba1489feccb17ef",
+    "revision": "9aca3253c7bad1e39fed",
     "url": "/TracksAndLyrics/static/css/main.6c9c1329.chunk.css"
   },
   {
-    "revision": "91e108b379215f431021",
-    "url": "/TracksAndLyrics/static/js/2.201339cc.chunk.js"
+    "revision": "2245c2a58a635faed732",
+    "url": "/TracksAndLyrics/static/js/2.463756ee.chunk.js"
   },
   {
-    "revision": "2a369ba1489feccb17ef",
-    "url": "/TracksAndLyrics/static/js/main.1b947aa9.chunk.js"
+    "revision": "9aca3253c7bad1e39fed",
+    "url": "/TracksAndLyrics/static/js/main.2157b50f.chunk.js"
   },
   {
     "revision": "2a1974e10e11394f4fc9",
