@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7d8e7e894e29305cd8443462205d59dc",
+    "revision": "104bf3b372304441cf9ff21debe395b6",
     "url": "/TracksAndLyrics/index.html"
   },
   {
-    "revision": "44fce6370d3098ffc5c5",
+    "revision": "2a369ba1489feccb17ef",
     "url": "/TracksAndLyrics/static/css/main.6c9c1329.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TracksAndLyrics/static/js/2.201339cc.chunk.js"
   },
   {
-    "revision": "44fce6370d3098ffc5c5",
-    "url": "/TracksAndLyrics/static/js/main.c2b75317.chunk.js"
+    "revision": "2a369ba1489feccb17ef",
+    "url": "/TracksAndLyrics/static/js/main.1b947aa9.chunk.js"
   },
   {
     "revision": "2a1974e10e11394f4fc9",
