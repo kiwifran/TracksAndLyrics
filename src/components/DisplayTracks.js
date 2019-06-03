@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
-import {itunesApiUrl} from "../constants/Api.js"
+import {itunesApiUrl} from "../constants/Api.js";
+import Qs from "qs";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import animateScrollTo from 'animated-scroll-to';
@@ -147,19 +148,27 @@ class DisplayTracks extends Component{
     //If the input string changes in the state, make the first API call to search tracks and store the data coming. The API call will Only be triggered if users search for a term that differs from the last time. Render a notice if API call fails.
     componentDidUpdate(prevProps, prevState) {
         if(this.state.inputString!==prevState.inputString){
+            
             Axios({
-                url: itunesApiUrl,
-                method: "GET",
-                dataResponse: "JSON",
+                method:"GET",
+                url: "https://proxy.hackeryou.com",
+                dataResponse: "json",
+                paramsSerializer: function (params) {
+                    return Qs.stringify(params, { arrayFormat: "brackets" })
+                },
                 params: {
-                    term:this.state.inputString,
-                    country:"ca",
-                    media:"music",
-                    limit:24,
-                    lang: "en_us",
-                    entity:"musicTrack"
+                    reqUrl:itunesApiUrl,
+                    params: {
+                        term:this.state.inputString,
+                        country:"ca",
+                        media:"music",
+                        limit:"24",
+                        lang:"en_us",
+                        entity:"musicTrack"
+                    },
+                    xmlToJSON: false
                 }
-            }).then((res) => {       
+            }).then((res) => {  
                 this.setState({
                     backMusicData:res.data.results,
                 })
