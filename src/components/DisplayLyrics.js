@@ -31,7 +31,7 @@ class DisplayLyrics extends Component{
     renderLoading = () => {
         return (
             <div className="loadingLyrics wrapper">
-                <h3 tabIndex="5">Please <span>double click</span> on the song's name to check its lyrics after search results show on the page <span>♬</span></h3>
+                <h3 tabIndex="5">Please <span>click</span> on the song's name to check its lyrics after search results show on the page <span>♬</span></h3>
             </div>
         )
     }
