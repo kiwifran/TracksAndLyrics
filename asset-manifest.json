@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/TracksAndLyrics/static/css/main.6c9c1329.chunk.css",
-    "main.js": "/TracksAndLyrics/static/js/main.116e0095.chunk.js",
-    "main.js.map": "/TracksAndLyrics/static/js/main.116e0095.chunk.js.map",
+    "main.css": "/TracksAndLyrics/static/css/main.cb654deb.chunk.css",
+    "main.js": "/TracksAndLyrics/static/js/main.402a1289.chunk.js",
+    "main.js.map": "/TracksAndLyrics/static/js/main.402a1289.chunk.js.map",
     "runtime~main.js": "/TracksAndLyrics/static/js/runtime~main.5d5519c4.js",
     "runtime~main.js.map": "/TracksAndLyrics/static/js/runtime~main.5d5519c4.js.map",
     "static/js/2.463756ee.chunk.js": "/TracksAndLyrics/static/js/2.463756ee.chunk.js",
     "static/js/2.463756ee.chunk.js.map": "/TracksAndLyrics/static/js/2.463756ee.chunk.js.map",
     "index.html": "/TracksAndLyrics/index.html",
-    "precache-manifest.6fceb8e8d7f9d7e0fcf38c81510e8d1d.js": "/TracksAndLyrics/precache-manifest.6fceb8e8d7f9d7e0fcf38c81510e8d1d.js",
+    "precache-manifest.ff8c986c7fe10be1337b8dc8d8fd6f75.js": "/TracksAndLyrics/precache-manifest.ff8c986c7fe10be1337b8dc8d8fd6f75.js",
     "service-worker.js": "/TracksAndLyrics/service-worker.js",
-    "static/css/main.6c9c1329.chunk.css.map": "/TracksAndLyrics/static/css/main.6c9c1329.chunk.css.map",
+    "static/css/main.cb654deb.chunk.css.map": "/TracksAndLyrics/static/css/main.cb654deb.chunk.css.map",
     "static/media/styles.scss": "/TracksAndLyrics/static/media/headerBackground.07a0376e.jpg"
   }
 }
