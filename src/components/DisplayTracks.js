@@ -90,7 +90,7 @@ class DisplayTracks extends Component{
                                     className="trackName"
                                     data-artist={track.artistName}
                                     data-track={track.trackName}
-                                    onDoubleClick={this.handleDbClick}>
+                                    onClick={this.handleClickOnSong}>
                                     {track.trackName}
                                 </p>
                             </div>
@@ -116,7 +116,7 @@ class DisplayTracks extends Component{
                                     className="trackName"
                                     data-artist={track.artistName}
                                     data-track={track.trackName}
-                                    onDoubleClick={this.handleDbClick}>
+                                    onClick={this.handleClickOnSong}>
                                     {track.trackName}
                                 </p>
                             </div>
@@ -135,7 +135,7 @@ class DisplayTracks extends Component{
         )
     }
     //if users click on a track name after the search results show on the page, store users' choice in the state and pass the state values to displayLyrics component to trigger the second API call in that component.
-    handleDbClick = (e) => {
+    handleClickOnSong = (e) => {
         this.setState({
             trackUserChoice: e.target.dataset.track,
             artistUserChoice: e.target.dataset.artist,
