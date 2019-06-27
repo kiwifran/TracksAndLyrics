@@ -69,10 +69,11 @@ class DisplayTracks extends Component {
 		this.setState(
 			{
 				isPlaying: !this.state.isPlaying,
-				previewIndex:index
+				previewIndex:index,
+				audio:audio,
 			},
 			() => {
-				this.state.isPlaying ? audio.play() : audio.pause();
+				this.state.isPlaying ? this.state.audio.play() : this.state.audio.pause();
 			}
 		);
 		audio.onended = (e) => {
@@ -263,6 +264,29 @@ class DisplayTracks extends Component {
 						confirmButtonColor: "#7a9aaa"
 					});
 				});
+		}
+		if(this.state.previewIndex!==prevState.previewIndex&&prevState.previewIndex!==undefined) {
+			// this.state.audio.pause();
+			console.log(prevState.previewIndex);
+			const prevIndex = prevState.previewIndex;
+			console.log(prevIndex);
+			
+			const prevAudio = document.getElementById(`audio${prevIndex}`);
+			console.log(prevAudio);
+			
+			prevAudio.pause();
+			let audio = document.getElementById(`audio${this.state.previewIndex}`);
+			this.setState(
+				{
+					audio: audio,
+					isPlaying: true
+				},
+				() => {
+					this.state.isPlaying
+						? this.state.audio.play()
+						: this.state.audio.pause();
+				}
+			);
 		}
 		//     if(this.state.previewTrack!==prevState.previewTrack) {
 		//         this.player.play();
