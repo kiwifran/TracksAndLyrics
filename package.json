@@ -6,6 +6,7 @@
   "dependencies": {
     "animated-scroll-to": "^1.2.2",
     "axios": "^0.18.0",
+    "firebase": "^6.2.4",
     "gh-pages": "^2.0.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",

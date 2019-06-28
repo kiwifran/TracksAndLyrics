@@ -1,7 +1,9 @@
 import React, {Component, Fragment} from "react";
 import {itunesApiUrl} from "../constants/Api.js";
+import SaveTrack from "./SaveTrack.js";
 import Qs from "qs";
 import Axios from "axios";
+import firebase from "./Firebase.js";
 import Swal from "sweetalert2";
 import animateScrollTo from 'animated-scroll-to';
 import Rellax from "rellax";
@@ -64,7 +66,7 @@ class DisplayTracks extends Component {
 				confirmButtonColor: "#7a9aaa"
 			});
 	};
-	demoClick = (index) => {
+	demoClick = index => {
 		let audio = document.getElementById(`audio${index}`)
 		this.setState(
 			{
@@ -100,21 +102,23 @@ class DisplayTracks extends Component {
 	displayTracks = () => {
 		const jsxString = [];
 		this.state.backMusicData.forEach((track, i) => {
-			if (track.trackViewUrl !== undefined) {
+			const {trackViewUrl, collectionViewUrl, artworkUrl100, collectionCensoredName, previewUrl, artistName, trackName, trackId} = track;
+			if (trackViewUrl !== undefined) {
 				jsxString.push(
 					<div key={i} className="singleTrack">
 						<div className="imgWrapper">
 							<a
 								tabIndex={6 + i * 3 + 1}
 								target="_blank"
-								href={track.trackViewUrl}
+								rel="noopener noreferrer"
+								href={trackViewUrl}
 								aira-label="go to track's Itunes page"
 							>
 								<img
-									src={track.artworkUrl100}
+									src={artworkUrl100}
 									alt={
 										`picture of the album ` +
-										track.collectionCensoredName
+										collectionCensoredName
 									}
 								/>
 							</a>
@@ -122,69 +126,20 @@ class DisplayTracks extends Component {
 						<div className="trackInfo">
 							<audio
 								id={`audio${i}`}
-								src={track.previewUrl}
-								type="audio/m4a"
-							/>
-							<p tabIndex={6 + i * 3 + 2}>{track.artistName}</p>
-							<p
-								tabIndex={6 + i * 3 + 3}
-								className="trackName"
-								data-artist={track.artistName}
-								data-track={track.trackName}
-								onClick={this.handleClickOnSong}
-							>
-								{track.trackName}
-							</p>
-							<button
-								className="previewButton"
-								onClick={() => {
-									this.demoClick(i);
-								}}
-							>
-								{this.state.isPlaying&&
-								this.state.previewIndex===i
-									?"||"
-									:">"}
-							</button>
-						</div>
-					</div>
-				);
-			} else {
-				jsxString.push(
-					<div key={i} className="singleTrack">
-						<div className="imgWrapper">
-							<a
-								tabIndex={6 + i * 3 + 1}
-								target="_blank"
-								href={track.collectionViewUrl}
-								aira-label="go to track's Itunes page"
-							>
-								<img
-									src={track.artworkUrl100}
-									alt={
-										`picture of the album ` +
-										track.collectionCensoredName
-									}
-								/>
-							</a>
-						</div>
-						<div className="trackInfo">
-							<audio
-								id={`audio${i}`}
-								src={track.previewUrl}
+								src={previewUrl}
 								type="audio/m4a"
 							/>
 							<p tabIndex={6 + i * 3 + 2}>
-								{track.artistName}
+								{artistName}
 							</p>
 							<p
 								tabIndex={6 + i * 3 + 3}
 								className="trackName"
-								data-artist={track.artistName}
-								data-track={track.trackName}
+								data-artist={artistName}
+								data-track={trackName}
 								onClick={this.handleClickOnSong}
 							>
-								{track.trackName}
+								{trackName}
 							</p>
 							<button
 								className="previewButton"
@@ -197,6 +152,60 @@ class DisplayTracks extends Component {
 									? "||"
 									: ">"}
 							</button>
+							<SaveTrack trackId={trackId} track={track} />
+						</div>
+					</div>
+				);
+			} else {
+				jsxString.push(
+					<div key={i} className="singleTrack">
+						<div className="imgWrapper">
+							<a
+								tabIndex={6 + i * 3 + 1}
+								target="_blank"
+								rel="noopener noreferrer"
+								href={collectionViewUrl}
+								aira-label="go to track's Itunes page"
+							>
+								<img
+									src={artworkUrl100}
+									alt={
+										`picture of the album ` +
+										collectionCensoredName
+									}
+								/>
+							</a>
+						</div>
+						<div className="trackInfo">
+							<audio
+								id={`audio${i}`}
+								src={previewUrl}
+								type="audio/m4a"
+							/>
+							<p tabIndex={6 + i * 3 + 2}>
+								{artistName}
+							</p>
+							<p
+								tabIndex={6 + i * 3 + 3}
+								className="trackName"
+								data-artist={artistName}
+								data-track={trackName}
+								onClick={this.handleClickOnSong}
+							>
+								{trackName}
+							</p>
+							<button
+								className="previewButton"
+								onClick={() => {
+									this.demoClick(i);
+								}}
+							>
+								{this.state.isPlaying &&
+								this.state.previewIndex === i
+									? "||"
+									: ">"}
+							</button>
+							<SaveTrack trackId={trackId} track={track}/>
 						</div>
 					</div>
 				);
@@ -288,21 +297,7 @@ class DisplayTracks extends Component {
 				}
 			);
 		}
-		//     if(this.state.previewTrack!==prevState.previewTrack) {
-		//         this.player.play();
-		//         this.setState({
-		//             // icon: "■"
-		//             isPlaying:"true",
-		//             icon:"||"
-
-		// 		});
-		// }
-		// if(this.state.isPlaying!==prevState.isPlaying&&this.state.isPlaying===false) {
-		//     this.player.pause();
-		//     this.setState({
-		//         icon:">"
-		//     })
-		// }
+		
 	}
 	render() {
 		return (
@@ -338,7 +333,7 @@ class DisplayTracks extends Component {
 					<div className="trackResultWrapper">
 						{this.state.backMusicData.length > 0
 							? this.displayTracks()
-							: this.renderLoadingPage()}
+							:null}
 					</div>
 					<DisplayLyrics
 						track={this.state.trackUserChoice}
