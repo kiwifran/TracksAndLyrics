@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {itunesApiUrl} from "../constants/Api.js";
-import SaveTrack from "./SaveTrack.js";
+import SingleTrack from "./SingleTrack.js";
 import Qs from "qs";
 import Axios from "axios";
 import firebase from "./Firebase.js";
@@ -100,121 +100,26 @@ class DisplayTracks extends Component {
 	//display search results on the page. When users click on the image of a song, the app will open a new tab to show the song's Itunes page.
 	//Though the API provides a trackId for every track, but when I used the trackId as the key of the single track wrapper, sometimes react would tell me there were repeated keys, so I used the index as the key for single track wrapper div to avoid key repetition
 	displayTracks = () => {
-		const jsxString = [];
+		let jsxString=[]
 		this.state.backMusicData.forEach((track, i) => {
-			const {trackViewUrl, collectionViewUrl, artworkUrl100, collectionCensoredName, previewUrl, artistName, trackName, trackId} = track;
-			if (trackViewUrl !== undefined) {
-				jsxString.push(
-					<div key={i} className="singleTrack">
-						<div className="imgWrapper">
-							<a
-								tabIndex={6 + i * 3 + 1}
-								target="_blank"
-								rel="noopener noreferrer"
-								href={trackViewUrl}
-								aira-label="go to track's Itunes page"
-							>
-								<img
-									src={artworkUrl100}
-									alt={
-										`picture of the album ` +
-										collectionCensoredName
-									}
-								/>
-							</a>
-						</div>
-						<div className="trackInfo">
-							<audio
-								id={`audio${i}`}
-								src={previewUrl}
-								type="audio/m4a"
-							/>
-							<p tabIndex={6 + i * 3 + 2}>
-								{artistName}
-							</p>
-							<p
-								tabIndex={6 + i * 3 + 3}
-								className="trackName"
-								data-artist={artistName}
-								data-track={trackName}
-								onClick={this.handleClickOnSong}
-							>
-								{trackName}
-							</p>
-							<button
-								className="previewButton"
-								onClick={() => {
-									this.demoClick(i);
-								}}
-							>
-								{this.state.isPlaying &&
-								this.state.previewIndex === i
-									? "||"
-									: ">"}
-							</button>
-							<SaveTrack trackId={trackId} track={track} />
-						</div>
-					</div>
-				);
-			} else {
-				jsxString.push(
-					<div key={i} className="singleTrack">
-						<div className="imgWrapper">
-							<a
-								tabIndex={6 + i * 3 + 1}
-								target="_blank"
-								rel="noopener noreferrer"
-								href={collectionViewUrl}
-								aira-label="go to track's Itunes page"
-							>
-								<img
-									src={artworkUrl100}
-									alt={
-										`picture of the album ` +
-										collectionCensoredName
-									}
-								/>
-							</a>
-						</div>
-						<div className="trackInfo">
-							<audio
-								id={`audio${i}`}
-								src={previewUrl}
-								type="audio/m4a"
-							/>
-							<p tabIndex={6 + i * 3 + 2}>
-								{artistName}
-							</p>
-							<p
-								tabIndex={6 + i * 3 + 3}
-								className="trackName"
-								data-artist={artistName}
-								data-track={trackName}
-								onClick={this.handleClickOnSong}
-							>
-								{trackName}
-							</p>
-							<button
-								className="previewButton"
-								onClick={() => {
-									this.demoClick(i);
-								}}
-							>
-								{this.state.isPlaying &&
-								this.state.previewIndex === i
-									? "||"
-									: ">"}
-							</button>
-							<SaveTrack trackId={trackId} track={track}/>
-						</div>
-					</div>
-				);
-			}
+			jsxString.push(
+			<SingleTrack
+				track={track}
+				trackId={track.trackId}
+				i={i}
+				handleClickOnSong={this.handleClickOnSong}
+				demoClick={this.demoClick}
+				isPlaying={this.state.isPlaying}
+				previewIndex={this.state.previewIndex}
+			/>
+			)
 		});
 		return (
 			<div className="tracksWrapper wrapper">
 				<h3 tabIndex="6">Results</h3>
-				<div className="tracks">{jsxString}</div>
+				<div className="tracks">
+						{jsxString}
+				</div>
 				<GoUpButton
 					tabIndex="79"
 					locationClass="header"
