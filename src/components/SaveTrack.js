@@ -1,16 +1,19 @@
 import React, {Component, Fragment} from "react";
 import firebase from "./Firebase.js";
 class SaveTrack extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             isSaved:false,
-            ariaLabel:"save the song in the list"
+            ariaLabel:"save the song in the list",
+            userId: this.props.user.uid,
         }	
     }
+    
+
     handleClick =()=>{
         console.log("saved");
-        const dbRef = firebase.database().ref();
+        const dbRef = firebase.database().ref(`/${this.state.userId}`);
         const {
 			trackViewUrl,
 			collectionViewUrl,
@@ -22,15 +25,17 @@ class SaveTrack extends Component{
 			trackId
         } = this.props.track;
         
-        dbRef.push({
-			trackViewUrl,
-			collectionViewUrl,
-			artworkUrl100,
-			collectionCensoredName,
-			previewUrl,
-			artistName,
-			trackName,
-			trackId
+        dbRef.push({ 
+
+					trackViewUrl,
+					collectionViewUrl,
+					artworkUrl100,
+					collectionCensoredName,
+					previewUrl,
+					artistName,
+					trackName,
+					trackId
+				
 		});
         this.setState({
 			isSaved: true,
@@ -39,7 +44,7 @@ class SaveTrack extends Component{
     }
     componentDidMount(){
         console.log("mounted");
-        const dbRef = firebase.database().ref();
+        const dbRef = firebase.database().ref(`/${this.state.userId}`);
         const savedSongsId = [];
         dbRef.on('value', (response) => {
             const data = response.val();

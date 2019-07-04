@@ -1,20 +1,19 @@
-import React, {Component, Fragment} from "react";
-import SaveTrack from "./SaveTrack.js";
-class SingleTrack extends Component{
+import React, {Component,Fragment} from 'react';
+class SingleSavedSong extends Component{
     constructor(props){
         super(props);
         this.state={
         }	
     }	
-    singleTrack =()=>{
-            const {track, trackId, i, handleClickOnSong, demoClick, isPlaying, previewIndex}=this.props
-			const {trackViewUrl, collectionViewUrl, artworkUrl100, collectionCensoredName, previewUrl, artistName, trackName} = track;
+    singleSong=()=>{
+        const {track, i, handleRemove, demoClick, isPlaying, previewIndex}=this.props
+			const {trackViewUrl, collectionViewUrl, artworkUrl100, collectionCensoredName, previewUrl, artistName, trackName, trackId} = track;
             return(
-					<div key={i} className="singleTrack">
-						<div className="imgWrapper">
+					<div key={i} className="savedTrack">
+						<div className="imgWrapperSmall">
 							{trackViewUrl!==undefined
                                 ?<a
-								tabIndex={6 + i * 3 + 1}
+								
 								target="_blank"
 								rel="noopener noreferrer"
 								href={trackViewUrl}
@@ -28,7 +27,6 @@ class SingleTrack extends Component{
 								/>
                                 </a>
                                 :<a
-                                    tabIndex={6 + i * 3 + 1}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     href={collectionViewUrl}
@@ -43,21 +41,19 @@ class SingleTrack extends Component{
                                 </a>
                             }   
 						</div>
-						<div className="trackInfo">
+						<div className="savedTrackInfo">
 							<audio
-								id={`audio${i}`}
+								id={`savedPreview${i}`}
 								src={previewUrl}
 								type="audio/m4a"
 							/>
-							<p tabIndex={6 + i * 3 + 2}>
+							<p >
 								{artistName}
 							</p>
 							<p
-								tabIndex={6 + i * 3 + 3}
+								
 								className="trackName"
-								data-artist={artistName}
-								data-track={trackName}
-								onClick={handleClickOnSong}
+
 							>
 								{trackName}
 							</p>
@@ -72,24 +68,22 @@ class SingleTrack extends Component{
 									? "||"
 									: ">"}
 							</button>
-							{this.props.user
-							?<SaveTrack user={this.props.user} trackId={trackId} track={track} />
-							:"log in to save"
-							}
+							<button >remove</button>
 						</div>
 					</div>
 				);
 			
-			
+    }
+    componentDidMount(){
     }
     componentDidUpdate(prevProps, prevState) {
     }
     render(){
         return(
             <Fragment>
-                {this.singleTrack()}
+                {this.singleSong()}
             </Fragment>
         )
     }
 }
-export default SingleTrack;
+export default SingleSavedSong;

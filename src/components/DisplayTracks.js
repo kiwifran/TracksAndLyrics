@@ -3,7 +3,6 @@ import {itunesApiUrl} from "../constants/Api.js";
 import SingleTrack from "./SingleTrack.js";
 import Qs from "qs";
 import Axios from "axios";
-import firebase from "./Firebase.js";
 import Swal from "sweetalert2";
 import animateScrollTo from 'animated-scroll-to';
 import Rellax from "rellax";
@@ -26,6 +25,7 @@ class DisplayTracks extends Component {
 			// icon: ">"
         };
 	}
+	
 	//when users are typing in the search bar， getting the value of users' input.
 	handleInputChange = e => {
 		this.setState({
@@ -111,6 +111,7 @@ class DisplayTracks extends Component {
 				demoClick={this.demoClick}
 				isPlaying={this.state.isPlaying}
 				previewIndex={this.state.previewIndex}
+				user={this.props.user}
 			/>
 			)
 		});

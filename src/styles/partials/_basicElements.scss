@@ -37,6 +37,9 @@ img {
     transition: all 1s;
 
 }
+li {
+    list-style-type: none;
+}
 a {
     text-decoration: none;
     color:inherit;
@@ -44,6 +47,9 @@ a {
     &:active {
         color:$decorationColor;
     }
+}
+.logLink {
+    cursor:pointer
 }
 footer p:first-child:focus a,
 footer p:first-child:hover a {
