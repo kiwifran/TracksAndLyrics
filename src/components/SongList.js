@@ -34,14 +34,21 @@ class SongList extends Component {
 				isPlaying: false
 			});
 		};
-    };
+	};
+	handleRemove = (key) => {
+		console.log(key);
+		
+		const dbRef = firebase.database().ref(`/${this.state.uid}`);
+		console.log("deleted");
+		dbRef.child(key).remove();
+	}
     getList =()=>{
-        const dbRef = firebase.database().ref(`${this.state.uid}`);
+        const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.on("value", res => {
 				const newSongArr = [];
 				const data = res.val();
 				for (let key in data) {
-					newSongArr.push(data[key]);
+					newSongArr.push([key,data[key]]);
 				}
 				console.log(newSongArr);
 				this.setState({
@@ -55,12 +62,14 @@ class SongList extends Component {
             console.log(i);
 			jsxString.push(
 				<SingleSavedSong
-					track={track}
+					track={track[1]}
+					key={track[0]}
 					i={i}
+					serialNum={track[0]}
 					demoClick={this.demoClick}
 					isPlaying={this.state.isPlaying}
 					previewIndex={this.state.previewIndex}
-					// handleRemove={this.handleRemove}
+					handleRemove={this.handleRemove}
 				/>
 			);
         })
@@ -99,7 +108,7 @@ class SongList extends Component {
 				`savedPreview${prevIndex}`
 			);
 			console.log(prevAudio);
-
+			if(prevAudio){
 			prevAudio.pause();
 			let audio = document.getElementById(
 				`savedPreview${this.state.previewIndex}`
@@ -115,6 +124,7 @@ class SongList extends Component {
 						: this.state.audio.pause();
 				}
 			);
+			}
 		}
 	}
 	render() {

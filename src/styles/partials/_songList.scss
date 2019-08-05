@@ -1,0 +1,8 @@
+.listWrapper {
+    @include flex(row, space-between, center, center);
+    flex-wrap: wrap;
+}
+.savedTrack {
+    width:30%;
+    margin-bottom: 30px;
+}
