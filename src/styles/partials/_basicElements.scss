@@ -29,13 +29,20 @@ body {
 p {
     margin-top:0;
 }
+img,
+button {
+    border-radius: 10px;
+}
 img {
     width:100%;
     max-width:100;
     display: block;
-    border-radius: 10px;
     transition: all 1s;
 
+}
+ul {
+    margin:0;
+    padding-left: 0;
 }
 li {
     list-style-type: none;
@@ -69,13 +76,16 @@ main a:active>img {
     position: absolute;
     color:$decorationColor;
 }
+button {
+    border:none;
+}
 input,
 input::placeholder,
-button {
+button.longButton {
     color:$white;
 }
 input, 
-button {
+button.longButton {
     width:40%;
     border:none;
 }
@@ -89,9 +99,8 @@ input {
         border-bottom:0.2px solid $white;
     }
 }
-button {
+button.longButton {
     padding:5px 10px;
-    border-radius: 10px;
     background: rgb(211,105,55);
     background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
     &:hover,
@@ -118,7 +127,7 @@ button.swal2-confirm.swal2-styled {
         width: 92%;
     }
     input,
-    button {
+    button.longButton {
         width:55%;
     }
 }

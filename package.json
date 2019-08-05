@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://kiwifran.github.io/TracksAndLyrics/",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.21",
+    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "animated-scroll-to": "^1.2.2",
     "axios": "^0.18.0",
     "firebase": "^6.2.4",

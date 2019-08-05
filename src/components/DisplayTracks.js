@@ -22,6 +22,7 @@ class DisplayTracks extends Component {
 			artistUserChoice: "",
 			previewTrackUrl: "",
 			isPlaying: false,
+			audio:null
 			// icon: ">"
         };
 	}
@@ -68,6 +69,8 @@ class DisplayTracks extends Component {
 	};
 	demoClick = index => {
 		let audio = document.getElementById(`audio${index}`)
+		console.log(audio);
+		
 		this.setState(
 			{
 				isPlaying: !this.state.isPlaying,
@@ -104,6 +107,7 @@ class DisplayTracks extends Component {
 		this.state.backMusicData.forEach((track, i) => {
 			jsxString.push(
 			<SingleTrack
+				key={track.trackId}
 				track={track}
 				trackId={track.trackId}
 				i={i}
@@ -180,7 +184,7 @@ class DisplayTracks extends Component {
 					});
 				});
 		}
-		if(this.state.previewIndex!==prevState.previewIndex&&prevState.previewIndex!==undefined) {
+		if(prevState.previewIndex!==undefined && this.state.previewIndex!==prevState.previewIndex) {
 			// this.state.audio.pause();
 			console.log(prevState.previewIndex);
 			const prevIndex = prevState.previewIndex;
@@ -202,6 +206,11 @@ class DisplayTracks extends Component {
 						: this.state.audio.pause();
 				}
 			);
+		}
+		if(this.state.inputString && this.state.inputString!==prevState.inputString &&this.state.audio){
+				this.setState({
+					isPlaying: false
+				});
 		}
 		
 	}
@@ -231,7 +240,7 @@ class DisplayTracks extends Component {
 								placeholder="type in the track name"
 								onClick={this.handleInputClick}
 							/>
-							<button className="submitSearch">Find it</button>
+							<button className="longButton submitSearch">Find it</button>
 						</form>
 					</div>
 				</header>
@@ -239,7 +248,7 @@ class DisplayTracks extends Component {
 					<div className="trackResultWrapper">
 						{this.state.backMusicData.length > 0
 							? this.displayTracks()
-							:null}
+							:this.renderLoadingPage()}
 					</div>
 					<DisplayLyrics
 						track={this.state.trackUserChoice}

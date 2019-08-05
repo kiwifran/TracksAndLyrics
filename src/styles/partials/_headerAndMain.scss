@@ -1,14 +1,45 @@
+//nav
+li,
+.logLink {
+    color:$white;
+}
+nav {
+    padding:0;
+    // background-color: rgba(60, 23, 6, 0.85);
+// background: rgb(26,53,67);
+// background: linear-gradient(53deg, rgba(26,53,67,1) 29%, rgba(60,23,6,1) 68%);
+ background: rgba(60,23,6, 0.5);
+background: linear-gradient(243deg, rgba(60,23,6,1) 22%, rgba(26,53,67,1) 88%); 
+    button {
+        padding: 0;
+        background: inherit;
+    }
+    svg {
+        margin-right: 5px;
+    }
+}
+nav ul {
+    @include flex(row, space-between, center, center);
+
+
+}
+nav li {
+    height: 40px;
+    @include flex(column, center, center, center);
+
+}
+
 //header
 header {
     @include flex(column, center, center, center);
-    min-height: 100vh;
+    height: calc(100vh - 40px);
     position: relative;
     background-image:url("../assets/headerBackground.jpg");
     background-size: cover;
     background-position: center center; 
     h1 {
     margin-top: 0;
-    margin-bottom: 45vh;
+    margin-bottom: 42vh;
     color:$black;
 	-webkit-animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
     animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
@@ -50,6 +81,19 @@ header {
     font-size: 105px;
 }
 //main section
+.smallButton {
+    height: 40px;
+    width: 40px;
+    @include color(rgba(0, 0, 0, 0.3), $white);
+    transition: color 0.3s;
+    margin: 5px;
+    &:not(:disabled) :hover {
+        color:$accentColor;
+    }
+    &:disabled {
+        @include color(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.6) )
+    }
+}
 .quickScrollUp {
     width:35%;
     display: block;
@@ -86,9 +130,9 @@ header {
     @include flex(row, space-between, center, center);
     flex-wrap:wrap;
     .singleTrack {
-        @include flex(column, flex-start, center, center);
+        @include flex(column, space-between, center, center);
         width:15%;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
     }
     p {
         margin-bottom: 0.7rem;

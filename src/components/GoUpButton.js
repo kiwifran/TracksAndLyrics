@@ -8,7 +8,7 @@ function GoUpButton (props){
     return(
         <button 
             tabIndex={props.tabIndex}
-            className="quickScrollUp" 
+            className="longButton quickScrollUp" 
             onClick={()=>{scrollUp()}} > {props.showText}
         </button>
     )
