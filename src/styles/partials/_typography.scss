@@ -97,6 +97,9 @@ footer {
 
 }
 @media (max-width:520px) {
+    nav {
+        font-size: 23px;
+    }
     h1 {
         @include headingFont(40); 
     }

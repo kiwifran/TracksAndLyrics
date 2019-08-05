@@ -17,6 +17,9 @@ background: linear-gradient(243deg, rgba(60,23,6,1) 22%, rgba(26,53,67,1) 88%);
     svg {
         margin-right: 5px;
     }
+    p {
+        display: inline;
+    }
 }
 nav ul {
     @include flex(row, space-between, center, center);
@@ -125,6 +128,11 @@ header {
 }
 .tracksWrapper {
     padding-bottom: 2rem;
+    .imgWrapper {
+        width:90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
 }
 .tracks{
     @include flex(row, space-between, center, center);
@@ -139,9 +147,6 @@ header {
     }
 }
 .imgWrapper {
-    width:90%;
-    margin: 0 auto;
-    margin-bottom: 1.5rem;
 	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
@@ -214,6 +219,9 @@ header {
     }
 }
 @media (max-width:520px) {
+    nav p{
+        display: none;
+    }
     input,
     button,
     .submitSearch {
@@ -227,4 +235,5 @@ header {
     .quickScrollUp {
         width: 80%;
     }
+    
 }

@@ -1,4 +1,6 @@
 import React, {Component,Fragment} from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class SingleSavedSong extends Component{
     constructor(props){
         super(props);
@@ -11,8 +13,8 @@ class SingleSavedSong extends Component{
 		
 			const {trackViewUrl, collectionViewUrl, artworkUrl100, collectionCensoredName, previewUrl, artistName, trackName} = track;
             return (
-				<div className="savedTrack">
-					<div className="imgWrapperSmall">
+				<div className="singleTrack">
+					<div className="imgWrapper">
 						{trackViewUrl !== undefined ? (
 							<a
 								target="_blank"
@@ -45,31 +47,40 @@ class SingleSavedSong extends Component{
 							</a>
 						)}
 					</div>
-					<div className="savedTrackInfo">
+					<div className="trackInfo">
 						<audio
 							id={`savedPreview${i}`}
 							src={previewUrl}
 							type="audio/m4a"
 						/>
 						<p>{artistName}</p>
-						<p className="trackName">{trackName}</p>
-						<button
-							className="previewButton"
-							onClick={() => {
-								demoClick(i);
-							}}
-						>
-							{isPlaying && previewIndex === i
-								? "||"
-								: ">"}
-						</button>
-						<button
-							onClick={() => {
-								handleRemove(serialNum);
-							}}
-						>
-							remove
-						</button>
+						<p className="trackNameSaved">
+							{trackName}
+						</p>
+						<div className="buttonWrapper">
+							<button
+								className="previewButton smallButton"
+								onClick={() => {
+									demoClick(i);
+								}}
+							>
+								{isPlaying && previewIndex === i ? (
+									<FontAwesomeIcon icon="pause" />
+								) : (
+									<FontAwesomeIcon icon="play" />
+								)}
+							</button>
+							<button
+								className="smallButton"
+								onClick={() => {
+									handleRemove(serialNum);
+								}}
+							>
+								<FontAwesomeIcon
+									icon="trash-alt"
+								/>
+							</button>
+						</div>
 					</div>
 				</div>
 			);

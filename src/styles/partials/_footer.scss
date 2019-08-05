@@ -1,7 +1,8 @@
 footer {
     @include color($mainColor, $white);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 50px;
 }
 footer p {
     margin-bottom: 0;

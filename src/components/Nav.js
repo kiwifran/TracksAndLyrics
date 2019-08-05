@@ -6,23 +6,35 @@ function Nav(props) {
     return (
 		<nav>
 			<ul className="linkList wrapper">
-				<li
-					className="link "
-				>
+				<li className="link ">
 					{props.user ? (
-						<button  className="logLink" onClick={props.handleLogOut}><FontAwesomeIcon icon="sign-out-alt" />Log Out</button>
+						<button
+							className="logLink"
+							onClick={props.handleLogOut}
+						>
+							<FontAwesomeIcon icon="sign-out-alt" />
+							<p>Log Out</p>
+						</button>
 					) : (
-						<button className="logLink" onClick={props.handleLogIn}><FontAwesomeIcon icon="sign-in-alt" />Log In</button>
+						<button
+							className="logLink"
+							onClick={props.handleLogIn}
+						>
+							<FontAwesomeIcon icon="sign-in-alt" />
+							<p>Log In</p>
+						</button>
 					)}
 				</li>
 				<li className="link">
 					<NavLink to="/" className="navLink">
-						<FontAwesomeIcon icon="search" />Search
+						<FontAwesomeIcon icon="search" />
+						<p>Search</p>
 					</NavLink>
 				</li>
 				<li className="link">
 					<NavLink to="/songList" className="navLink">
-						<FontAwesomeIcon icon="clipboard-list" />Song List
+						<FontAwesomeIcon icon="clipboard-list" />
+						<p>Song List</p>
 					</NavLink>
 				</li>
 			</ul>

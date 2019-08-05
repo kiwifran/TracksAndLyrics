@@ -1,6 +1,10 @@
 import React, {Component,Fragment} from 'react';
 import SingleSavedSong from "./SingleSavedSong.js"
 import firebase from "./Firebase.js";
+import Particles from "react-particles-js";
+import ParticlesConfig from "./ParticlesConfig.js";
+
+
 class SongList extends Component {
 	constructor(props) {
 		super(props);
@@ -74,7 +78,7 @@ class SongList extends Component {
 			);
         })
         return(
-            <div className="listWrapper">
+            <div className="listWrapper wrapper">
                 {jsxString}
             </div>
         )
@@ -130,7 +134,10 @@ class SongList extends Component {
 	render() {
 		return (
 			<Fragment>
-				{this.state.uid? this.displayList() : this.requireLogIn()}
+				<Particles canvasClassName="particleCanvas" width="100vw" height="100vh" params={ParticlesConfig} />
+				{this.state.uid
+					? this.displayList()
+					: this.requireLogIn()}
 			</Fragment>
 		);
 	}
