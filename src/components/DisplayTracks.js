@@ -127,7 +127,7 @@ class DisplayTracks extends Component {
 				</div>
 				<GoUpButton
 					tabIndex="79"
-					locationClass="header"
+					locationClass="nav"
 					showText="Search another song"
 				/>
 			</div>

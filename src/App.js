@@ -11,7 +11,8 @@ import {
 	faSave,
 	faTrashAlt,
 	faSearch,
-	faClipboardList
+	faClipboardList,
+	faDumpster
 } from "@fortawesome/free-solid-svg-icons";
 import Nav from "./components/Nav.js"
 import DisplayTracks from './components/DisplayTracks.js';
@@ -30,7 +31,8 @@ library.add(
 	faSave,
 	faTrashAlt,
 	faSearch,
-	faClipboardList
+	faClipboardList,
+	faDumpster
 );
 class App extends Component {
 	constructor() {

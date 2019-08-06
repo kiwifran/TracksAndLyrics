@@ -50,6 +50,10 @@ h3 {
 .lyricsWrapper {
     line-height: 1.4;
 }
+.deleteAll {
+    font-size: 25px;
+    text-align: center;
+}
 .lyricsWrapper,
 footer {
     @include bodyFont(18);

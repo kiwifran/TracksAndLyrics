@@ -29,7 +29,16 @@ nav ul {
 nav li {
     height: 40px;
     @include flex(column, center, center, center);
+    
 
+}
+// .navIcon {
+//     transition: all 0.35s;
+// }
+.link:hover .navIcon {
+    -webkit-animation: wobble-ver-right 0.8s ease-in-out both;
+	        animation: wobble-ver-right 0.8s ease-in-out both;
+    color: $accentColor;
 }
 
 //header

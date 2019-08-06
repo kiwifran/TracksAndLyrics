@@ -4,7 +4,7 @@ import firebase from "./Firebase.js";
 import Particles from "react-particles-js";
 import ParticlesConfig from "./ParticlesConfig.js";
 import Swal from "sweetalert2";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SongList extends Component {
 	constructor(props) {
@@ -54,6 +54,13 @@ class SongList extends Component {
 		console.log("deleted");
 		dbRef.child(key).remove();
 	}
+	dumpAllSongs = () =>{
+		const dbRef = firebase
+				.database()
+				.ref(`/${this.state.uid}`);
+		dbRef.remove();
+		
+	}
     getList =()=>{
         const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.on("value", res => {
@@ -85,11 +92,21 @@ class SongList extends Component {
 				/>
 			);
         })
-        return(
-            <div className="listWrapper wrapper">
-                {jsxString}
-            </div>
-        )
+        return (
+			<div className="listWrapper wrapper">
+				<div className="deleteAll">
+					<button
+						className="smallButton"
+						onClick={this.dumpAllSongs}
+					>
+						<FontAwesomeIcon icon="dumpster" />
+					</button>
+					<p>Delete all songs</p>
+				</div>
+
+				<div className="savedSongs">{jsxString}</div>
+			</div>
+		);
 	};
 	componentDidMount() {
         // let uid = this.state.uid;

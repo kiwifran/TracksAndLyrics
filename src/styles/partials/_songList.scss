@@ -6,14 +6,28 @@
     z-index: -5;
 }
 
-
 .listWrapper {
-    @include flex(row, space-between, center, center);
-    flex-wrap: wrap;
     min-height: calc(100vh - 40px - 50px);
     padding-top: 50px;
     padding-bottom: 50px;
-    color:$white;
+    color: $white;
+}
+.deleteAll {
+    width: 40%;
+    margin: 0 auto;
+    button {
+        width: 45px;
+        height: 45px;
+    }
+    p {
+        display: inline-block;
+        color: $accentColor;
+    }
+    
+}
+.savedSongs{
+    @include flex(row, space-between, center, center);
+    flex-wrap: wrap;
     .singleTrack {
         position: relative;
         @include flex(row, space-between, center, center);
@@ -79,18 +93,21 @@
     .listWrapper {
         .singleTrack::after {
         
-            left: 0;
+            left: 5%;
 
         }
         .imgWrapper {
         width:45%;
         }
-    .trackInfo {
-        @include flex(column, center, center, center);
-        width:45%;
+        .trackInfo {
+            @include flex(column, center, center, center);
+            width:45%;
+        }
     }
+    .deleteAll {
+        width: 85%;
     }
-}
+}   
 @media (max-width:400px) {
     .listWrapper {
         .imgWrapper,
@@ -100,7 +117,7 @@
         }
         .singleTrack::after {
         
-            left: 20%;
+            left: 19%;
 
         }
         p {
