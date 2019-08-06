@@ -3,6 +3,7 @@ import SingleSavedSong from "./SingleSavedSong.js"
 import firebase from "./Firebase.js";
 import Particles from "react-particles-js";
 import ParticlesConfig from "./ParticlesConfig.js";
+import Swal from "sweetalert2";
 
 
 class SongList extends Component {
@@ -17,7 +18,14 @@ class SongList extends Component {
 	}
 
 	requireLogIn = () => {
-		return <h2>log in to see your saved songs</h2>;
+		Swal.fire({
+			title: "🎐Aah",
+			text: "Please log in to see your song list",
+			background: "#3c1706",
+			confirmButtonText: "Fine",
+			confirmButtonColor: "#d77649"
+		});
+			return <div className="listWrapper"></div>
 	};
 	demoClick = index => {
 		let audio = document.getElementById(`savedPreview${index}`);
