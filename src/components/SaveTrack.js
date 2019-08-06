@@ -66,7 +66,11 @@ class SaveTrack extends Component {
 	componentDidMount() {
 		this.checkSavedSongs();
 	}
-	componentDidUpdate(prevProps, prevState) {}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.trackId !== this.props.trackId) {
+			this.checkSavedSongs();
+		}
+	}
 	render() {
 		return (
 			<Fragment>
