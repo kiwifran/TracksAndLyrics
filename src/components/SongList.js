@@ -1,8 +1,8 @@
-import React, {Component,Fragment} from 'react';
-import SingleSavedSong from "./SingleSavedSong.js"
+import React, { Component, Fragment } from "react";
+import SingleSavedSong from "./SingleSavedSong.js";
 import firebase from "./Firebase.js";
 import Particles from "react-particles-js";
-import ParticlesConfig from "./ParticlesConfig.js";
+import ParticlesConfig from "../constants/ParticlesConfig.js";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -11,9 +11,11 @@ class SongList extends Component {
 		super(props);
 		this.state = {
 			songs: [],
-            uid: this.props.uid,
+			uid: this.props.uid,
 			previewTrackUrl: "",
-			isPlaying: false
+			isPlaying: false,
+			previewIndex: null,
+			audio: null
 		};
 	}
 
@@ -25,7 +27,7 @@ class SongList extends Component {
 			confirmButtonText: "Fine",
 			confirmButtonColor: "#d77649"
 		});
-			return <div className="listWrapper"></div>
+		return <div className="listWrapper" />;
 	};
 	demoClick = index => {
 		let audio = document.getElementById(`savedPreview${index}`);
@@ -47,38 +49,30 @@ class SongList extends Component {
 			});
 		};
 	};
-	handleRemove = (key) => {
-		console.log(key);
-		
+	handleRemove = key => {
 		const dbRef = firebase.database().ref(`/${this.state.uid}`);
-		console.log("deleted");
 		dbRef.child(key).remove();
-	}
-	dumpAllSongs = () =>{
-		const dbRef = firebase
-				.database()
-				.ref(`/${this.state.uid}`);
+	};
+	dumpAllSongs = () => {
+		const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.remove();
-		
-	}
-    getList =()=>{
-        const dbRef = firebase.database().ref(`/${this.state.uid}`);
+	};
+	getList = () => {
+		const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.on("value", res => {
-				const newSongArr = [];
-				const data = res.val();
-				for (let key in data) {
-					newSongArr.push([key,data[key]]);
-				}
-				console.log(newSongArr);
-				this.setState({
-                    songs: [...newSongArr],
-				});
-            });
-    }
+			const newSongArr = [];
+			const data = res.val();
+			for (let key in data) {
+				newSongArr.push([key, data[key]]);
+			}
+			this.setState({
+				songs: [...newSongArr]
+			});
+		});
+	};
 	displayList = () => {
 		let jsxString = [];
 		this.state.songs.forEach((track, i) => {
-            console.log(i);
 			jsxString.push(
 				<SingleSavedSong
 					track={track[1]}
@@ -91,14 +85,11 @@ class SongList extends Component {
 					handleRemove={this.handleRemove}
 				/>
 			);
-        })
-        return (
+		});
+		return (
 			<div className="listWrapper wrapper">
 				<div className="deleteAll">
-					<button
-						className="smallButton"
-						onClick={this.dumpAllSongs}
-					>
+					<button className="smallButton" onClick={this.dumpAllSongs}>
 						<FontAwesomeIcon icon="dumpster" />
 					</button>
 					<p>Delete all songs</p>
@@ -109,60 +100,56 @@ class SongList extends Component {
 		);
 	};
 	componentDidMount() {
-        // let uid = this.state.uid;
-        // console.log(uid);
-        this.getList();
-    }
+		this.getList();
+	}
 	componentDidUpdate(prevProps, prevState) {
+		if (this.props.uid !== prevProps.uid) {
+			this.setState(
+				{
+					uid: this.props.uid
+				},
+				() => {
+					this.getList();
+				}
+			);
+		}
 		if (
-			this.props.uid!==prevProps.uid
+			prevState.previewIndex !== undefined &&
+			this.state.previewIndex !== prevState.previewIndex
 		) {
-			this.setState({
-				uid: this.props.uid
-            },()=>{
-                this.getList();
-            });
-            
-        }
-        if (
-			this.state.previewIndex !== prevState.previewIndex &&
-			prevState.previewIndex !== undefined
-		) {
-			// this.state.audio.pause();
-			console.log(prevState.previewIndex);
 			const prevIndex = prevState.previewIndex;
-			console.log(prevIndex);
-
 			const prevAudio = document.getElementById(
 				`savedPreview${prevIndex}`
 			);
-			console.log(prevAudio);
-			if(prevAudio){
-			prevAudio.pause();
-			let audio = document.getElementById(
-				`savedPreview${this.state.previewIndex}`
-			);
-			this.setState(
-				{
-					audio: audio,
-					isPlaying: true
-				},
-				() => {
-					this.state.isPlaying
-						? this.state.audio.play()
-						: this.state.audio.pause();
-				}
-			);
+			if (prevAudio) {
+				prevAudio.pause();
+				let audio = document.getElementById(
+					`savedPreview${this.state.previewIndex}`
+				);
+				this.setState(
+					{
+						audio: audio,
+						isPlaying: true
+					},
+					() => {
+						this.state.isPlaying
+							? this.state.audio.play()
+							: this.state.audio.pause();
+					}
+				);
 			}
 		}
 	}
 	render() {
 		return (
 			<Fragment>
-				<Particles canvasClassName="particleCanvas" width="100vw" height="100vh" params={ParticlesConfig} />
-				{this.state.uid
-					? this.displayList()
-					: this.requireLogIn()}
+				<Particles
+					canvasClassName="particleCanvas"
+					width="100vw"
+					height="100vh"
+					params={ParticlesConfig}
+				/>
+				{this.state.uid ? this.displayList() : this.requireLogIn()}
 			</Fragment>
 		);
 	}

@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from "react";
-import {itunesApiUrl} from "../constants/Api.js";
+import React, { Component, Fragment } from "react";
+import { itunesApiUrl } from "../constants/Api.js";
 import SingleTrack from "./SingleTrack.js";
 import Qs from "qs";
 import Axios from "axios";
 import Swal from "sweetalert2";
-import animateScrollTo from 'animated-scroll-to';
+import animateScrollTo from "animated-scroll-to";
 import Rellax from "rellax";
 import DisplayLyrics from "./DisplayLyrics.js";
 import GoUpButton from "./GoUpButton.js";
@@ -22,11 +22,11 @@ class DisplayTracks extends Component {
 			artistUserChoice: "",
 			previewTrackUrl: "",
 			isPlaying: false,
-			audio:null
-			// icon: ">"
-        };
+			audio: null,
+			previewIndex: null
+		};
 	}
-	
+
 	//when users are typing in the search bar， getting the value of users' input.
 	handleInputChange = e => {
 		this.setState({
@@ -68,27 +68,26 @@ class DisplayTracks extends Component {
 			});
 	};
 	demoClick = index => {
-		let audio = document.getElementById(`audio${index}`)
-		console.log(audio);
-		
+		let audio = document.getElementById(`audio${index}`);
 		this.setState(
 			{
 				isPlaying: !this.state.isPlaying,
-				previewIndex:index,
-				audio:audio,
+				previewIndex: index,
+				audio: audio
 			},
 			() => {
-				this.state.isPlaying ? this.state.audio.play() : this.state.audio.pause();
+				this.state.isPlaying
+					? this.state.audio.play()
+					: this.state.audio.pause();
 			}
 		);
-		audio.onended = (e) => {
+		audio.onended = e => {
 			this.setState({
-				isPlaying:false
-			})
-			}
-			
-	}
-		
+				isPlaying: false
+			});
+		};
+	};
+
 	//provide a loading page and information about the app for users
 	renderLoadingPage = () => {
 		return (
@@ -103,28 +102,26 @@ class DisplayTracks extends Component {
 	//display search results on the page. When users click on the image of a song, the app will open a new tab to show the song's Itunes page.
 	//Though the API provides a trackId for every track, but when I used the trackId as the key of the single track wrapper, sometimes react would tell me there were repeated keys, so I used the index as the key for single track wrapper div to avoid key repetition
 	displayTracks = () => {
-		let jsxString=[]
+		let jsxString = [];
 		this.state.backMusicData.forEach((track, i) => {
 			jsxString.push(
-			<SingleTrack
-				key={track.trackId}
-				track={track}
-				trackId={track.trackId}
-				i={i}
-				handleClickOnSong={this.handleClickOnSong}
-				demoClick={this.demoClick}
-				isPlaying={this.state.isPlaying}
-				previewIndex={this.state.previewIndex}
-				user={this.props.user}
-			/>
-			)
+				<SingleTrack
+					key={i}
+					track={track}
+					trackId={track.trackId}
+					i={i}
+					handleClickOnSong={this.handleClickOnSong}
+					demoClick={this.demoClick}
+					isPlaying={this.state.isPlaying}
+					previewIndex={this.state.previewIndex}
+					user={this.props.user}
+				/>
+			);
 		});
 		return (
 			<div className="tracksWrapper wrapper">
 				<h3 tabIndex="6">Results</h3>
-				<div className="tracks">
-						{jsxString}
-				</div>
+				<div className="tracks">{jsxString}</div>
 				<GoUpButton
 					tabIndex="79"
 					locationClass="nav"
@@ -169,7 +166,6 @@ class DisplayTracks extends Component {
 				}
 			})
 				.then(res => {
-					console.log(res);
 					this.setState({
 						backMusicData: res.data.results
 					});
@@ -184,17 +180,16 @@ class DisplayTracks extends Component {
 					});
 				});
 		}
-		if(prevState.previewIndex!==undefined && this.state.previewIndex!==prevState.previewIndex) {
-			// this.state.audio.pause();
-			console.log(prevState.previewIndex);
+		if (
+			prevState.previewIndex &&
+			this.state.previewIndex !== prevState.previewIndex
+		) {
 			const prevIndex = prevState.previewIndex;
-			console.log(prevIndex);
-			
 			const prevAudio = document.getElementById(`audio${prevIndex}`);
-			console.log(prevAudio);
-			
 			prevAudio.pause();
-			let audio = document.getElementById(`audio${this.state.previewIndex}`);
+			let audio = document.getElementById(
+				`audio${this.state.previewIndex}`
+			);
 			this.setState(
 				{
 					audio: audio,
@@ -207,12 +202,15 @@ class DisplayTracks extends Component {
 				}
 			);
 		}
-		if(this.state.inputString && this.state.inputString!==prevState.inputString &&this.state.audio){
-				this.setState({
-					isPlaying: false
-				});
+		if (
+			prevState.inputString &&
+			this.state.inputString !== prevState.inputString &&
+			this.state.audio
+		) {
+			this.setState({
+				isPlaying: false
+			});
 		}
-		
 	}
 	render() {
 		return (
@@ -240,7 +238,9 @@ class DisplayTracks extends Component {
 								placeholder="type in the track name"
 								onClick={this.handleInputClick}
 							/>
-							<button className="longButton submitSearch">Find it</button>
+							<button className="longButton submitSearch">
+								Find it
+							</button>
 						</form>
 					</div>
 				</header>
@@ -248,7 +248,7 @@ class DisplayTracks extends Component {
 					<div className="trackResultWrapper">
 						{this.state.backMusicData.length > 0
 							? this.displayTracks()
-							:this.renderLoadingPage()}
+							: this.renderLoadingPage()}
 					</div>
 					<DisplayLyrics
 						track={this.state.trackUserChoice}
@@ -259,4 +259,4 @@ class DisplayTracks extends Component {
 		);
 	}
 }
-export default  DisplayTracks;
+export default DisplayTracks;

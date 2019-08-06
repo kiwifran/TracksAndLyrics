@@ -1,6 +1,6 @@
 import React from "react";
-function Footer(){
-    return (
+function Footer() {
+	return (
 		<footer>
 			<p tabIndex="82">
 				Powered! by{" "}

@@ -1,248 +1,248 @@
 //nav
 li,
 .logLink {
-    color:$white;
+	color: $white;
+}
+nav,
+footer {
+	background: rgba(60, 23, 6, 0.5);
+	background: linear-gradient(
+		243deg,
+		rgba(60, 23, 6, 1) 22%,
+		rgba(26, 53, 67, 1) 88%
+	);
 }
 nav {
-    padding:0;
-    // background-color: rgba(60, 23, 6, 0.85);
-// background: rgb(26,53,67);
-// background: linear-gradient(53deg, rgba(26,53,67,1) 29%, rgba(60,23,6,1) 68%);
- background: rgba(60,23,6, 0.5);
-background: linear-gradient(243deg, rgba(60,23,6,1) 22%, rgba(26,53,67,1) 88%); 
-    button {
-        padding: 0;
-        background: inherit;
-    }
-    svg {
-        margin-right: 5px;
-    }
-    p {
-        display: inline;
-    }
+	padding: 0;
+
+	button {
+		padding: 0;
+		background: inherit;
+	}
+	svg {
+		margin-right: 5px;
+	}
+	p {
+		display: inline;
+	}
 }
 nav ul {
-    @include flex(row, space-between, center, center);
-
-
+	@include flex(row, space-between, center, center);
 }
 nav li {
-    height: 40px;
-    @include flex(column, center, center, center);
-    
-
+	height: 40px;
+	@include flex(column, center, center, center);
 }
-// .navIcon {
-//     transition: all 0.35s;
-// }
+
 .link:hover .navIcon {
-    -webkit-animation: wobble-ver-right 0.8s ease-in-out both;
-	        animation: wobble-ver-right 0.8s ease-in-out both;
-    color: $accentColor;
+	-webkit-animation: wobble-ver-right 0.8s ease-in-out both;
+	animation: wobble-ver-right 0.8s ease-in-out both;
+	color: $accentColor;
 }
 
 //header
 header {
-    @include flex(column, center, center, center);
-    height: calc(100vh - 40px);
-    position: relative;
-    background-image:url("../assets/headerBackground.jpg");
-    background-size: cover;
-    background-position: center center; 
-    h1 {
-    margin-top: 0;
-    margin-bottom: 42vh;
-    color:$black;
-	-webkit-animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
-    animation: text-focus-in 1.2s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
-    &:focus,
-    &:active {
-        color:$secondaryColor;
-        border: 1px solid $accentColor;
-    }
-    }
-    form {
-    @include flex(column, center, center, center )
-    }
+	@include flex(column, center, center, center);
+	height: calc(100vh - 40px);
+	position: relative;
+	background-image: url("../assets/headerBackground.jpg");
+	background-size: cover;
+	background-position: center center;
+	h1 {
+		margin-top: 0;
+		margin-bottom: 42vh;
+		color: $black;
+		-webkit-animation: text-focus-in 1.2s
+			cubic-bezier(0.55, 0.055, 0.675, 0.19) both;
+		animation: text-focus-in 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			both;
+		&:focus,
+		&:active {
+			color: $secondaryColor;
+			border: 1px solid $accentColor;
+		}
+	}
+	form {
+		@include flex(column, center, center, center);
+	}
 }
 //rellax elements
 .musicSign1 {
-    top:26%;
-    right:5%;
+	top: 26%;
+	right: 5%;
 }
 .musicSign2 {
-    bottom:29%;
-    left:6%;
+	bottom: 29%;
+	left: 6%;
 }
 .musicSign3 {
-    top:45%;
-    right:27%;
-    font-size: 100px;
+	top: 45%;
+	right: 27%;
+	font-size: 100px;
 }
 .musicSign4 {
-    top:29%;
-    left:28%;
+	top: 29%;
+	left: 28%;
 }
 .musicSign5 {
-    top:80%;
-    right:20%;
+	top: 80%;
+	right: 20%;
 }
 .musicSign6 {
-    top:7%;
-    left:12%;
-    font-size: 105px;
+	top: 7%;
+	left: 12%;
+	font-size: 105px;
 }
 //main section
 .smallButton {
-    height: 40px;
-    width: 40px;
-    @include color(rgba(0, 0, 0, 0.3), $white);
-    transition: color 0.3s;
-    margin: 5px;
-    &:not(:disabled) :hover {
-        color:$accentColor;
-    }
-    &:disabled {
-        @include color(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.6) )
-    }
+	height: 40px;
+	width: 40px;
+	@include color(rgba(0, 0, 0, 0.3), $white);
+	transition: color 0.3s;
+	margin: 5px;
+	&:not(:disabled) :hover {
+		color: $accentColor;
+	}
+	&:disabled {
+		@include color(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.6));
+	}
 }
 .quickScrollUp {
-    width:35%;
-    display: block;
-    margin: 2rem auto;
-    padding:10px 10px;
+	width: 35%;
+	display: block;
+	margin: 2rem auto;
+	padding: 10px 10px;
 }
 .trackResultWrapper,
 .lyricsResultWrapper {
-    padding-top:2.5rem;
-    h3 {
-        margin-top: 0;
-    }
+	padding-top: 2.5rem;
+	h3 {
+		margin-top: 0;
+	}
 }
 .trackResultWrapper {
-    @include color($mainColor, $white);
+	@include color($mainColor, $white);
 }
 .loadingTracks,
 .loadingLyrics {
-    @include flex(row, center, center, center);
-    flex-wrap:wrap;
-    min-height: 50vh;
-    padding-top: 2rem;
+	@include flex(row, center, center, center);
+	flex-wrap: wrap;
+	min-height: 50vh;
+	padding-top: 2rem;
 }
 .loadingTracks span,
 .loadingLyrics span,
 .tracksWrapper h3,
 .lyricsWrapper h3 {
-    color:$accentColor;
+	color: $accentColor;
 }
 .tracksWrapper {
-    padding-bottom: 2rem;
-    .imgWrapper {
-        width:90%;
-        margin: 0 auto;
-        margin-bottom: 1.5rem;
-    }
+	padding-bottom: 2rem;
+	.imgWrapper {
+		width: 90%;
+		margin: 0 auto;
+		margin-bottom: 1.5rem;
+	}
 }
-.tracks{
-    @include flex(row, space-between, center, center);
-    flex-wrap:wrap;
-    .singleTrack {
-        @include flex(column, space-between, center, center);
-        width:15%;
-        margin-bottom: 1.5rem;
-    }
-    p {
-        margin-bottom: 0.7rem;
-    }
+.tracks {
+	@include flex(row, space-between, center, center);
+	flex-wrap: wrap;
+	.singleTrack {
+		@include flex(column, space-between, center, center);
+		width: 15%;
+		margin-bottom: 1.5rem;
+	}
+	p {
+		margin-bottom: 0.7rem;
+	}
 }
 .imgWrapper {
-	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	animation: fade-in-fwd 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	-webkit-animation: fade-in-fwd 0.9s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+	animation: fade-in-fwd 0.9s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
-.trackInfo>P:first-child:hover,
-.trackInfo>P:first-child:focus,
+.trackInfo > p:first-child:hover,
+.trackInfo > p:first-child:focus,
 .trackName:hover,
 .trackName:focus {
 	-webkit-animation: text-pop-up-top 0.5s ease-in-out both;
 	animation: text-pop-up-top 0.5s ease-in-out both;
 }
 .trackName {
-    cursor:pointer;
+	cursor: pointer;
 }
 .trackName:active {
-    color:$accentColor;
+	color: $accentColor;
 }
-.lyricsResultWrapper  {
-    @include color($secondaryColor, $white);
+.lyricsResultWrapper {
+	@include color($secondaryColor, $white);
 }
 .lyricsWrapper {
-    padding-bottom: 4.5rem;
-    p {
-        margin:0;
-    }
+	padding-bottom: 4.5rem;
+	p {
+		margin: 0;
+	}
 }
 
-//media queries 
-@media (max-width:1200px) {
-    .musicSign3,
-    .musicSign6 {  
-        font-size: 80px;
-    }
+//media queries
+@media (max-width: 1200px) {
+	.musicSign3,
+	.musicSign6 {
+		font-size: 80px;
+	}
 }
-@media (max-width:1000px) {
-    header {
-        background-position: 70% center;
-    }
-    .musicSign1 {
-        top:35%;
-        right:10%;
-    }
-    .musicSign4 {
-        display: none;
-    }
-    .trackResultWrapper,
-    .lyricsResultWrapper {
-        padding-top: 1.5rem;
-    }
-    .tracks .singleTrack {
-        width:23%;
-    }
+@media (max-width: 1000px) {
+	header {
+		background-position: 70% center;
+	}
+	.musicSign1 {
+		top: 35%;
+		right: 10%;
+	}
+	.musicSign4 {
+		display: none;
+	}
+	.trackResultWrapper,
+	.lyricsResultWrapper {
+		padding-top: 1.5rem;
+	}
+	.tracks .singleTrack {
+		width: 23%;
+	}
 }
-@media (max-width:750px) {
-    .quickScrollUp {
-        width: 69%;
-    }
+@media (max-width: 750px) {
+	.quickScrollUp {
+		width: 69%;
+	}
 }
-@media (max-width:650px) {
-    header h1 {
-        margin-bottom: 52vh;
-    }
-    input,
-    .submitSearch {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .tracks .singleTrack {
-        width:32%;
-    }
+@media (max-width: 650px) {
+	header h1 {
+		margin-bottom: 52vh;
+	}
+	input,
+	.submitSearch {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.tracks .singleTrack {
+		width: 32%;
+	}
 }
-@media (max-width:520px) {
-    nav p{
-        display: none;
-    }
-    input,
-    button,
-    .submitSearch {
-        width:80%;
-    }
+@media (max-width: 520px) {
+	nav p {
+		display: none;
+	}
+	input,
+	button,
+	.submitSearch {
+		width: 80%;
+	}
 }
-@media(max-width:450px) {
-    .tracks .singleTrack {
-        width:48%;
-    }
-    .quickScrollUp {
-        width: 80%;
-    }
-    
+@media (max-width: 450px) {
+	.tracks .singleTrack {
+		width: 48%;
+	}
+	.quickScrollUp {
+		width: 80%;
+	}
 }

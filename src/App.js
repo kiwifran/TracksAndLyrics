@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import firebase from "./components/Firebase.js";
 import ReactDOM from "react-dom";
@@ -14,12 +14,11 @@ import {
 	faClipboardList,
 	faDumpster
 } from "@fortawesome/free-solid-svg-icons";
-import Nav from "./components/Nav.js"
-import DisplayTracks from './components/DisplayTracks.js';
-import SongList from "./components/SongList.js"
-import Footer from "./components/Footer.js"
-import './styles/styles.scss';
-// import { Hash } from 'crypto';
+import Nav from "./components/Nav.js";
+import DisplayTracks from "./components/DisplayTracks.js";
+import SongList from "./components/SongList.js";
+import Footer from "./components/Footer.js";
+import "./styles/styles.scss";
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 
@@ -43,12 +42,8 @@ class App extends Component {
 	}
 	handleLogIn = () => {
 		auth.signInWithPopup(provider).then(result => {
-		const user = result.user;
-		console.log(user);
-		
-		console.log(user.email);
-		console.log(user.uid);
-    
+			const user = result.user;
+
 			this.setState({
 				user
 			});
@@ -86,7 +81,13 @@ class App extends Component {
 				<Route
 					path="/songList"
 					render={() => {
-						return <SongList uid={this.state.user?this.state.user.uid:null} />;
+						return (
+							<SongList
+								uid={
+									this.state.user ? this.state.user.uid : null
+								}
+							/>
+						);
 					}}
 				/>
 				<Footer />
