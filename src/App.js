@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import firebase from "./components/Firebase.js";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
 	faSignInAlt,
