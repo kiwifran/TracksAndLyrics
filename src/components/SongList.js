@@ -49,9 +49,7 @@ class SongList extends Component {
 			});
 		};
 	};
-	handleRemove = key => {
-		const dbRef = firebase.database().ref(`/${this.state.uid}`);
-		dbRef.child(key).remove();
+	getList = dbRef => {
 		dbRef.once("value", res => {
 			const newSongArr = [];
 			const data = res.val();
@@ -62,34 +60,18 @@ class SongList extends Component {
 				songs: [...newSongArr]
 			});
 		});
+	};
+	handleRemove = key => {
+		const dbRef = firebase.database().ref(`/${this.state.uid}`);
+		dbRef.child(key).remove();
+		this.getList(dbRef);
 	};
 	dumpAllSongs = () => {
 		const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.remove();
-		dbRef.once("value", res => {
-			const newSongArr = [];
-			const data = res.val();
-			for (let key in data) {
-				newSongArr.push([key, data[key]]);
-			}
-			this.setState({
-				songs: [...newSongArr]
-			});
-		});
+		this.getList(dbRef);
 	};
-	getList = () => {
-		const dbRef = firebase.database().ref(`/${this.state.uid}`);
-		dbRef.once("value", res => {
-			const newSongArr = [];
-			const data = res.val();
-			for (let key in data) {
-				newSongArr.push([key, data[key]]);
-			}
-			this.setState({
-				songs: [...newSongArr]
-			});
-		});
-	};
+
 	displayList = () => {
 		let jsxString = [];
 		this.state.songs.forEach((track, i) => {
@@ -120,7 +102,8 @@ class SongList extends Component {
 		);
 	};
 	componentDidMount() {
-		this.getList();
+		const dbRef = firebase.database().ref(`/${this.state.uid}`);
+		this.getList(dbRef);
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (this.props.uid !== prevProps.uid) {
@@ -129,7 +112,9 @@ class SongList extends Component {
 					uid: this.props.uid
 				},
 				() => {
-					this.getList();
+					const dbRef = firebase.database().ref(`/${this.state.uid}`);
+
+					this.getList(dbRef);
 				}
 			);
 		}
