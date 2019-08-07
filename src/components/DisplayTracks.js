@@ -181,26 +181,28 @@ class DisplayTracks extends Component {
 				});
 		}
 		if (
-			prevState.previewIndex &&
+			prevState.previewIndex !== undefined &&
 			this.state.previewIndex !== prevState.previewIndex
 		) {
 			const prevIndex = prevState.previewIndex;
 			const prevAudio = document.getElementById(`audio${prevIndex}`);
-			prevAudio.pause();
-			let audio = document.getElementById(
-				`audio${this.state.previewIndex}`
-			);
-			this.setState(
-				{
-					audio: audio,
-					isPlaying: true
-				},
-				() => {
-					this.state.isPlaying
-						? this.state.audio.play()
-						: this.state.audio.pause();
-				}
-			);
+			if (prevAudio) {
+				prevAudio.pause();
+				let audio = document.getElementById(
+					`audio${this.state.previewIndex}`
+				);
+				this.setState(
+					{
+						audio: audio,
+						isPlaying: true
+					},
+					() => {
+						this.state.isPlaying
+							? this.state.audio.play()
+							: this.state.audio.pause();
+					}
+				);
+			}
 		}
 		if (
 			prevState.inputString &&
