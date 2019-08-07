@@ -52,14 +52,34 @@ class SongList extends Component {
 	handleRemove = key => {
 		const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.child(key).remove();
+		dbRef.once("value", res => {
+			const newSongArr = [];
+			const data = res.val();
+			for (let key in data) {
+				newSongArr.push([key, data[key]]);
+			}
+			this.setState({
+				songs: [...newSongArr]
+			});
+		});
 	};
 	dumpAllSongs = () => {
 		const dbRef = firebase.database().ref(`/${this.state.uid}`);
 		dbRef.remove();
+		dbRef.once("value", res => {
+			const newSongArr = [];
+			const data = res.val();
+			for (let key in data) {
+				newSongArr.push([key, data[key]]);
+			}
+			this.setState({
+				songs: [...newSongArr]
+			});
+		});
 	};
 	getList = () => {
 		const dbRef = firebase.database().ref(`/${this.state.uid}`);
-		dbRef.on("value", res => {
+		dbRef.once("value", res => {
 			const newSongArr = [];
 			const data = res.val();
 			for (let key in data) {
