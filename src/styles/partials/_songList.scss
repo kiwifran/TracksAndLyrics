@@ -1,0 +1,129 @@
+.particleCanvas {
+	position: fixed !important;
+	left: 0;
+	top: 0;
+	background-image: linear-gradient(
+		to right,
+		#1a3543,
+		#272d44,
+		#382239,
+		#411823,
+		#3c1706
+	);
+	z-index: -5;
+}
+
+.listWrapper {
+	min-height: calc(100vh - 40px - 50px);
+	padding-top: 50px;
+	padding-bottom: 50px;
+	color: $white;
+}
+.deleteAll {
+	width: 40%;
+	margin: 0 auto;
+	button {
+		width: 45px;
+		height: 45px;
+	}
+	p {
+		display: inline-block;
+		color: $accentColor;
+	}
+}
+.savedSongs {
+	@include flex(row, space-between, center, center);
+	flex-wrap: wrap;
+	.singleTrack {
+		position: relative;
+		@include flex(row, space-between, center, center);
+		flex-wrap: wrap;
+		width: 50%;
+		padding: 15px;
+		margin-bottom: 20px;
+
+		&::after {
+			display: block;
+			content: "———♫♪♬———";
+			position: absolute;
+			bottom: -18px;
+			left: 23%;
+			font-size: 20px;
+			color: $decorationColor;
+		}
+	}
+	.imgWrapper {
+		width: 30%;
+	}
+	.trackInfo {
+		@include flex(column, center, center, center);
+		background-color: rgba(255, 255, 255, 0.11);
+		border-radius: 10px;
+		-webkit-box-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px,
+			#ff8000 0 -5px 10px, red 0 -5px 20px,
+			18px -2px 5px -6px rgba(0, 0, 0, 0);
+		box-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -5px 10px,
+			red 0 -5px 20px, 18px -2px 5px -6px rgba(0, 0, 0, 0);
+		width: 50%;
+		padding: 5px;
+		p {
+			margin-bottom: 7px;
+		}
+	}
+}
+
+@media (max-width: 880px) {
+	.savedSongs .singleTrack {
+		width: 80%;
+		margin: 15px auto;
+	}
+	.savedSongs .trackInfo {
+		width: 65%;
+	}
+}
+@media (max-width: 650px) {
+	.savedSongs {
+		.singleTrack::after {
+			left: 28%;
+		}
+		.imgWrapper {
+			width: 36%;
+		}
+		.trackInfo {
+			@include flex(column, center, center, center);
+			width: 55%;
+		}
+	}
+	.deleteAll {
+		width: 85%;
+	}
+}
+@media (max-width: 555px) {
+	.savedSongs {
+		.imgWrapper,
+		.trackInfo {
+			margin: 8px auto;
+		}
+		.imgWrapper {
+			width: 50%;
+		}
+		.trackInfo {
+			width: 80%;
+		}
+	}
+}
+@media (max-width: 400px) {
+	.savedSongs {
+		.imgWrapper,
+		.trackInfo {
+			width: 95%;
+		}
+
+		.singleTrack::after {
+			left: 19%;
+		}
+		p {
+			margin-bottom: 4px;
+		}
+	}
+}

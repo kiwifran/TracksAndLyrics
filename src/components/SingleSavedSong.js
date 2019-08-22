@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from "react";
-import SaveTrack from "./SaveTrack.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class SingleTrack extends Component {
+class SingleSavedSong extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
 	}
-	singleTrack = () => {
+	singleSong = () => {
 		const {
 			track,
-			trackId,
 			i,
-			handleClickOnSong,
+			serialNum,
+			handleRemove,
 			demoClick,
 			isPlaying,
 			previewIndex
@@ -27,11 +26,10 @@ class SingleTrack extends Component {
 			trackName
 		} = track;
 		return (
-			<div key={i} className="singleTrack">
+			<div className="singleTrack">
 				<div className="imgWrapper">
 					{trackViewUrl !== undefined ? (
 						<a
-							tabIndex={6 + i * 3 + 1}
 							target="_blank"
 							rel="noopener noreferrer"
 							href={trackViewUrl}
@@ -47,7 +45,6 @@ class SingleTrack extends Component {
 						</a>
 					) : (
 						<a
-							tabIndex={6 + i * 3 + 1}
 							target="_blank"
 							rel="noopener noreferrer"
 							href={collectionViewUrl}
@@ -64,43 +61,43 @@ class SingleTrack extends Component {
 					)}
 				</div>
 				<div className="trackInfo">
-					<audio id={`audio${i}`} src={previewUrl} type="audio/m4a" />
-					<p tabIndex={6 + i * 3 + 2}>{artistName}</p>
-					<p
-						tabIndex={6 + i * 3 + 3}
-						className="trackName"
-						data-artist={artistName}
-						data-track={trackName}
-						onClick={handleClickOnSong}
-					>
-						{trackName}
-					</p>
-					<button
-						className="previewButton smallButton"
-						onClick={() => {
-							demoClick(i);
-						}}
-					>
-						{isPlaying && previewIndex === i ? (
-							<FontAwesomeIcon icon="pause" />
-						) : (
-							<FontAwesomeIcon icon="play" />
-						)}
-					</button>
-					{this.props.user ? (
-						<SaveTrack
-							user={this.props.user}
-							trackId={trackId}
-							track={track}
-						/>
-					) : null}
+					<audio
+						id={`savedPreview${i}`}
+						src={previewUrl}
+						type="audio/m4a"
+					/>
+					<p>{artistName}</p>
+					<p className="trackNameSaved">{trackName}</p>
+					<div className="buttonWrapper">
+						<button
+							className="previewButton smallButton"
+							onClick={() => {
+								demoClick(i);
+							}}
+						>
+							{isPlaying && previewIndex === i ? (
+								<FontAwesomeIcon icon="pause" />
+							) : (
+								<FontAwesomeIcon icon="play" />
+							)}
+						</button>
+						<button
+							className="smallButton"
+							onClick={() => {
+								handleRemove(serialNum);
+							}}
+						>
+							<FontAwesomeIcon icon="trash-alt" />
+						</button>
+					</div>
 				</div>
 			</div>
 		);
 	};
+	componentDidMount() {}
 	componentDidUpdate(prevProps, prevState) {}
 	render() {
-		return <Fragment>{this.singleTrack()}</Fragment>;
+		return <Fragment>{this.singleSong()}</Fragment>;
 	}
 }
-export default SingleTrack;
+export default SingleSavedSong;

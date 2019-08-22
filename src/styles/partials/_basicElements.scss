@@ -2,122 +2,138 @@
 $mainColor: #1a3543;
 $secondaryColor: #3c1706;
 $shadowColor: rgba(122, 154, 170, 0.122);
-$decorationColor:rgba(240, 119, 63, 0.361);
-$accentColor:rgb(215, 118, 73);
+$decorationColor: rgba(240, 119, 63, 0.361);
+$accentColor: rgb(215, 118, 73);
 $white: rgba(229, 251, 252, 1);
-$black:#21282f;
+$black: #21282f;
 
-@mixin flex ($flex-direction, $justify-content, $align-items, $text-align) {
-    display:flex;
-    flex-direction: $flex-direction;
-    justify-content: $justify-content;
-    align-content: $align-items;
-    text-align: $text-align;
+@mixin flex($flex-direction, $justify-content, $align-items, $text-align) {
+	display: flex;
+	flex-direction: $flex-direction;
+	justify-content: $justify-content;
+	align-content: $align-items;
+	text-align: $text-align;
 }
-@mixin color ($background-color, $color){
-    background-color: $background-color;
-    color:$color;
+@mixin color($background-color, $color) {
+	background-color: $background-color;
+	color: $color;
 }
 //some basic settings for app
 body,
 .wrapper {
-    margin: 0 auto;
+	margin: 0 auto;
 }
-body {
-    max-width:1600px;
-}
+
 p {
-    margin-top:0;
+	margin-top: 0;
+}
+img,
+button {
+	border-radius: 10px;
 }
 img {
-    width:100%;
-    max-width:100;
-    display: block;
-    border-radius: 10px;
-    transition: all 1s;
-
+	width: 100%;
+	max-width: 100;
+	display: block;
+	transition: all 1s;
+}
+ul {
+	margin: 0;
+	padding-left: 0;
+}
+li {
+	list-style-type: none;
 }
 a {
-    text-decoration: none;
-    color:inherit;
-    transform: color 0.8s;
-    &:active {
-        color:$decorationColor;
-    }
+	text-decoration: none;
+	color: inherit;
+	transform: color 0.8s;
+	&:active {
+		color: $decorationColor;
+	}
+}
+.logLink {
+	cursor: pointer;
 }
 footer p:first-child:focus a,
 footer p:first-child:hover a {
-    color: $accentColor
+	color: $accentColor;
 }
 img:hover,
-main a:focus>img,
-main a:active>img {
-        transform: scale(1.15);
-        -webkit-box-shadow: 8px 12px 7px 4px $shadowColor;
-        -moz-box-shadow: 8px 12px 7px 4px $shadowColor;
+main a:focus > img,
+main a:active > img {
+	transform: scale(1.15);
+	-webkit-box-shadow: 8px 12px 7px 4px $shadowColor;
+	-moz-box-shadow: 8px 12px 7px 4px $shadowColor;
 }
 .wrapper {
-    width:85%;
+	width: 85%;
 }
 .musicSign {
-    position: absolute;
-    color:$decorationColor;
+	position: absolute;
+	color: $decorationColor;
+}
+button {
+	border: none;
 }
 input,
 input::placeholder,
-button {
-    color:$white;
+button.longButton {
+	color: $white;
 }
-input, 
-button {
-    width:40%;
-    border:none;
+input,
+button.longButton {
+	width: 40%;
+	border: none;
 }
 input {
-    margin-bottom: 1rem;
-    padding-top: 7px;
-    padding-bottom: 10px;
-    background: transparent;
-    &:focus,
-    &:active {
-        border-bottom:0.2px solid $white;
-    }
+	margin-bottom: 1rem;
+	padding-top: 7px;
+	padding-bottom: 10px;
+	background: transparent;
+	&:focus,
+	&:active {
+		border-bottom: 0.2px solid $white;
+	}
 }
-button {
-    padding:5px 10px;
-    border-radius: 10px;
-    background: rgb(211,105,55);
-    background: linear-gradient(53deg, rgba(211,105,55,1) 19%, rgba(231,128,112,0.856816054058342) 73%); 
-    &:hover,
-    &:focus {
-        -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
-        animation: heartbeat 1.5s ease-in-out infinite both;
-    }
-    &:active {
-        color:$black;
-    }
+button.longButton {
+	padding: 5px 10px;
+	background: rgb(211, 105, 55);
+	background: linear-gradient(
+		53deg,
+		rgba(211, 105, 55, 1) 19%,
+		rgba(231, 128, 112, 0.856816054058342) 73%
+	);
+	&:hover,
+	&:focus {
+		-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+		animation: heartbeat 1.5s ease-in-out infinite both;
+	}
+	&:active {
+		color: $black;
+	}
 }
 //sweet alert settings
 h2.swal2-title,
-.swal2-content>div:first-child {
-    color:$white;
+.swal2-content > div:first-child {
+	color: $white;
 }
 button.swal2-confirm.swal2-styled {
-    font-weight: bold;
-    color: $black;
+	font-weight: bold;
+	color: $black;
 }
-//media queries 
-@media (max-width:850px) {
-    .wrapper {
-        width: 92%;
-    }
-    input,
-    button {
-        width:55%;
-    }
+//media queries
+@media (max-width: 850px) {
+	.wrapper {
+		width: 92%;
+	}
+	input,
+	button.longButton {
+		width: 55%;
+	}
 }
-@media (max-width:650px) {
-    .musicSign {
-        display: none;
-    }
+@media (max-width: 650px) {
+	.musicSign {
+		display: none;
+	}
 }
